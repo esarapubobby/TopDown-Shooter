@@ -8,10 +8,17 @@ public class EnemyHealth : MonoBehaviour
     int currentHealth;
     SpriteRenderer spriteRenderer;
 
+    Animator animator;
+
+    public enemymovement Enemymovement;
+
+    bool Isdead= false;
+
     void Start()
     {
         currentHealth = maxHealth;
         spriteRenderer  = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     public void TakeDamage(int damage)
@@ -28,7 +35,12 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
-        Destroy(gameObject);
+        Isdead = true;
+        animator.SetBool("IsDead",Isdead);
+
+        Enemymovement.enabled = false;
+        
+        Destroy(gameObject,2f);
     }
     IEnumerator hitflash()
     {

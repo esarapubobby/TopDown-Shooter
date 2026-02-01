@@ -88,7 +88,7 @@ public class enemymovement : MonoBehaviour
 
                 if (playerHealth != null)
                 {
-                    playerHealth.TakeDamage(10);
+                    playerHealth.TakeDamage(20);
                     timer=0f;
                 }
             }

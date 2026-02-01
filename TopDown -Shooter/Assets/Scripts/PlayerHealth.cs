@@ -11,9 +11,14 @@ public class PlayerHealth : MonoBehaviour
 
     public float smoothspeed = 5f;
 
+    bool isdead = false;
+
+    Animator animator;
+
     float TargetFillAmount;
     void Start()
     {
+        animator = GetComponent<Animator>();
         currentHealth = maxHealth;
         TargetFillAmount = 1f;
         HealthFill.fillAmount = 1f;
@@ -43,7 +48,10 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
+        isdead = true;
         Debug.Log("player Died");
+        animator.SetBool("IsDead",isdead);
+        FindAnyObjectByType<enemymovement>().enabled = false;
         GetComponent<PlayerController>().enabled = false;
         GetComponent<PlayerShoot>().enabled = false;
     }
