@@ -163,9 +163,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f75e5715207820a4189c5cdd8317fec7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpeed: 1.5
+  enemySpeed: 0
   EnemyStopDistance: 2
   ditectiondistance: 5
+  playerHealth: {fileID: 0}
 --- !u!114 &3387184245513239799
 MonoBehaviour:
   m_ObjectHideFlags: 0

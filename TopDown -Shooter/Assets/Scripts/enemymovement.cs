@@ -13,16 +13,25 @@ public class enemymovement : MonoBehaviour
 
     [SerializeField] float ditectiondistance=5f;
     Transform player;
+
     float damageCooldown = 2f;   
+
+
     float timer = 0f;
+
     bool hasSeenPlayer = false;
+
+
     Animator animator;
+
+    public PlayerHealth playerHealth;
     
 
     void Start()
     {
         enemyRb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerHealth = GetComponent<PlayerHealth>();
         animator = GetComponent<Animator>();
     }
     void Update()
@@ -65,6 +74,15 @@ public class enemymovement : MonoBehaviour
         animator.SetBool("IsMove", true); 
 
         animator.SetBool("IsAttack", false);
+
+        //stop Enemy after player die
+         if (playerHealth.isdead)
+        {
+            animator.SetBool("IsMove", false);
+
+            animator.SetBool("IsAttack", false);
+
+        }
  
 
 

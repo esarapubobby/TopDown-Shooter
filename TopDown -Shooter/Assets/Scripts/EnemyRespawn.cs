@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemyRespawn : MonoBehaviour
 {
      public GameObject enemyPrefab;
     public float spawnInterval = 3f;

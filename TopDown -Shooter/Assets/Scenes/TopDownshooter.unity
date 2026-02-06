@@ -1100,6 +1100,7 @@ MonoBehaviour:
   maxHealth: 100
   HealthFill: {fileID: 531463330}
   smoothspeed: 5
+  isdead: 0
 --- !u!212 &467714568
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1774,11 +1775,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 678524806}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f07368e0f67a22240bca8ea3aa08de6d, type: 3}
+  m_Script: {fileID: 11500000, guid: c82fb2db4cd1a3547b14563712327509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7357538950370591466, guid: a05b70da833d6414eaf0988e1c626599, type: 3}
-  spawnInterval: 6
+  spawnInterval: 3
   maxEnemies: 5
 --- !u!1 &707596381
 GameObject:
@@ -1821,12 +1822,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 707596381}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f07368e0f67a22240bca8ea3aa08de6d, type: 3}
+  m_Script: {fileID: 11500000, guid: c82fb2db4cd1a3547b14563712327509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7357538950370591466, guid: a05b70da833d6414eaf0988e1c626599, type: 3}
-  spawnInterval: 1
-  maxEnemies: 2
+  spawnInterval: 3
+  maxEnemies: 5
 --- !u!1 &953597241
 GameObject:
   m_ObjectHideFlags: 0
@@ -2395,12 +2396,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1371729151}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f07368e0f67a22240bca8ea3aa08de6d, type: 3}
+  m_Script: {fileID: 11500000, guid: c82fb2db4cd1a3547b14563712327509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7357538950370591466, guid: a05b70da833d6414eaf0988e1c626599, type: 3}
-  spawnInterval: 4
-  maxEnemies: 2
+  spawnInterval: 3
+  maxEnemies: 5
 --- !u!1 &1554930442
 GameObject:
   m_ObjectHideFlags: 0

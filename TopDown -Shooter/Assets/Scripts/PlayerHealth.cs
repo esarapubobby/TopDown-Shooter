@@ -11,7 +11,7 @@ public class PlayerHealth : MonoBehaviour
 
     public float smoothspeed = 5f;
 
-    bool isdead = false;
+    public bool isdead = false;
 
     Animator animator;
 
@@ -49,9 +49,13 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         isdead = true;
+
+
         Debug.Log("player Died");
+
         animator.SetBool("IsDead",isdead);
-        FindAnyObjectByType<enemymovement>().enabled = false;
+
+
         GetComponent<PlayerController>().enabled = false;
         GetComponent<PlayerShoot>().enabled = false;
     }
