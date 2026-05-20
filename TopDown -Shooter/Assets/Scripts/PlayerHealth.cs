@@ -15,6 +15,8 @@ public class PlayerHealth : MonoBehaviour
 
     Animator animator;
 
+    public UiManager uiManager;
+
     float TargetFillAmount;
     void Start()
     {
@@ -49,7 +51,9 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         isdead = true;
-
+        uiManager.gameoverPanel.SetActive(true);
+        uiManager.hudPanel.SetActive(false);
+        Time.timeScale = 0f;
 
         Debug.Log("player Died");
 

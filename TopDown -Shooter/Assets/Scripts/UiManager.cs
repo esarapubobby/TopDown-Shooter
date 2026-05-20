@@ -6,9 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class UiManager : MonoBehaviour
 {
-   public Button PlayBtn,SettingsBtn,ExitBtn,newGameBtn,quitGameBtn,Xbtn;
+   public Button PlayBtn,SettingsBtn,ExitBtn;
+   public Button newGameBtn,quitGameBtn,Xbtn;
 
-   public GameObject HomelPannel,settingsPanel;
+   public Button RetryBtn,QuitBtn;
+
+   public GameObject HomelPannel,settingsPanel,gameoverPanel,hudPanel;
 
     bool openedFromGame = false;
     void Start()
@@ -19,33 +22,44 @@ public class UiManager : MonoBehaviour
         newGameBtn.onClick.AddListener(newgame);
         quitGameBtn.onClick.AddListener(QuitGame);
         Xbtn.onClick.AddListener(closeSettingsPanel);
+        RetryBtn.onClick.AddListener(Retrygame);
+        QuitBtn.onClick.AddListener(QuitGame);
         
         HomelPannel.SetActive(true);
         settingsPanel.SetActive(false);
+        hudPanel.SetActive(false);
+        gameoverPanel.SetActive(false);
         Time.timeScale = 0f;
     }
 
     public void Playgame()
     {
         HomelPannel.SetActive(false);
+        hudPanel.SetActive(true);
         Time.timeScale = 1f;
 
     }
     public void QuitGame()
     {
+        gameoverPanel.SetActive(false);
         settingsPanel.SetActive(false);
         HomelPannel.SetActive(true);
+        hudPanel.SetActive(false);
+
+        Time.timeScale = 0f;
     }
     public void openSettingspanelfromHome()
     {
         openedFromGame = false;
         HomelPannel.SetActive(false);
         settingsPanel.SetActive(true);
+        hudPanel.SetActive(false);
     }
     public void opensettingsFromGame()
     {
         openedFromGame = true;
         settingsPanel.SetActive(true);
+        hudPanel.SetActive(false);
         Time.timeScale = 0f;
     }
 
@@ -57,6 +71,7 @@ public class UiManager : MonoBehaviour
         if (openedFromGame)
         {
             Time.timeScale = 1f;
+            hudPanel.SetActive(true);
         }
         else
         {
@@ -73,5 +88,16 @@ public class UiManager : MonoBehaviour
     public void newgame()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void  Retrygame()
+    {
+
+        gameoverPanel.SetActive(false);
+        SceneManager.LoadScene(0);
+        HomelPannel.SetActive(false);
+        hudPanel.SetActive(true);
+        Time.timeScale = 1f;
+        
     }
 }
