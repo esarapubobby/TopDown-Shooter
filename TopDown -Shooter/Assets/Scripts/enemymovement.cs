@@ -102,12 +102,12 @@ public class enemymovement : MonoBehaviour
                 
                 if (damageTimer >= damageCooldown)
                 {
-                    if (playerHealth != null)
-                    {
-                        playerHealth.TakeDamage(20);
+                    // if (playerHealth != null)
+                    // {
+                    //     playerHealth.TakeDamage(20);
 
-                        damageTimer = 0f;
-                    }
+                    //     damageTimer = 0f;
+                    // }
                 }
             }
         }
@@ -148,7 +148,16 @@ public class enemymovement : MonoBehaviour
         moveDirection =
             Random.insideUnitCircle.normalized;
     }
+        void damagePlayer()
+    {
+        
+        PlayerHealth playerHealth =
+            player.GetComponent<PlayerHealth>();
+            
+        playerHealth.TakeDamage(20);
 
+        damageTimer = 0f;
+    }
     void RotateEnemy(Vector2 direction)
     {
         if (direction == Vector2.zero)
