@@ -14,6 +14,7 @@ public class EnemyHealth : MonoBehaviour
     public EnemyRespawn spawner;
 
     bool Isdead= false;
+    public CircleCollider2D enemyCollider;
 
     void Start()
     {
@@ -38,7 +39,7 @@ public class EnemyHealth : MonoBehaviour
     {
         Isdead = true;
         animator.SetBool("IsDead",Isdead);
-        
+        enemyCollider.isTrigger = true;
         Enemymovement.enabled = false;
 
         spawner.killedEnemies();

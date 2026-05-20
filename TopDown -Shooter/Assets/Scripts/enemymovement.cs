@@ -24,9 +24,8 @@ public class enemymovement : MonoBehaviour
 
     float patrolTimer;
 
-    float damageCooldown = 2f;
 
-    float damageTimer;
+
 
     bool hasSeenPlayer = false;
     Audiomanager audiomanager;
@@ -46,7 +45,6 @@ public class enemymovement : MonoBehaviour
 
     void Update()
     {
-        damageTimer += Time.deltaTime;
 
         patrolTimer += Time.deltaTime;
 
@@ -98,17 +96,6 @@ public class enemymovement : MonoBehaviour
                 animator.SetBool("IsMove", false);
 
                 animator.SetBool("IsAttack", true);
-
-                
-                if (damageTimer >= damageCooldown)
-                {
-                    // if (playerHealth != null)
-                    // {
-                    //     playerHealth.TakeDamage(20);
-
-                    //     damageTimer = 0f;
-                    // }
-                }
             }
         }
 
@@ -148,16 +135,7 @@ public class enemymovement : MonoBehaviour
         moveDirection =
             Random.insideUnitCircle.normalized;
     }
-        void damagePlayer()
-    {
-        
-        PlayerHealth playerHealth =
-            player.GetComponent<PlayerHealth>();
-            
-        playerHealth.TakeDamage(20);
-
-        damageTimer = 0f;
-    }
+    
     void RotateEnemy(Vector2 direction)
     {
         if (direction == Vector2.zero)
@@ -188,5 +166,13 @@ public class enemymovement : MonoBehaviour
     void playAttack()
     {
         audiomanager.playAttackSound();
+    }
+    void damagePlayer()
+    {
+        
+        PlayerHealth playerHealth =
+            player.GetComponent<PlayerHealth>();
+            
+        playerHealth.TakeDamage(20);
     }
 }

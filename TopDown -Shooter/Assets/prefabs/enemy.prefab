@@ -156,6 +156,7 @@ MonoBehaviour:
   maxHealth: 50
   Enemymovement: {fileID: 6863283907902447429}
   spawner: {fileID: 0}
+  enemyCollider: {fileID: 158418564491837411}
 --- !u!95 &8605641220889202813
 Animator:
   serializedVersion: 5

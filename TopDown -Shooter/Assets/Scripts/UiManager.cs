@@ -13,6 +13,7 @@ public class UiManager : MonoBehaviour
 
    public GameObject HomelPannel,settingsPanel,gameoverPanel,hudPanel;
 
+   public static bool isRetry = false;
     bool openedFromGame = false;
     void Start()
     {
@@ -25,11 +26,27 @@ public class UiManager : MonoBehaviour
         RetryBtn.onClick.AddListener(Retrygame);
         QuitBtn.onClick.AddListener(QuitGame);
         
-        HomelPannel.SetActive(true);
         settingsPanel.SetActive(false);
-        hudPanel.SetActive(false);
         gameoverPanel.SetActive(false);
-        Time.timeScale = 0f;
+
+        if (isRetry)
+        {
+            HomelPannel.SetActive(false);
+
+            hudPanel.SetActive(true);
+
+            Time.timeScale = 1f;
+
+            isRetry = false;
+        }
+        else
+        {
+            HomelPannel.SetActive(true);
+
+            hudPanel.SetActive(false);
+
+            Time.timeScale = 0f;
+        }
     }
 
     public void Playgame()
@@ -41,11 +58,8 @@ public class UiManager : MonoBehaviour
     }
     public void QuitGame()
     {
-        gameoverPanel.SetActive(false);
-        settingsPanel.SetActive(false);
-        HomelPannel.SetActive(true);
-        hudPanel.SetActive(false);
-
+        isRetry = false;
+        SceneManager.LoadScene(0);
         Time.timeScale = 0f;
     }
     public void openSettingspanelfromHome()
@@ -93,11 +107,8 @@ public class UiManager : MonoBehaviour
     public void  Retrygame()
     {
 
-        gameoverPanel.SetActive(false);
+        isRetry =true;
         SceneManager.LoadScene(0);
-        HomelPannel.SetActive(false);
-        hudPanel.SetActive(true);
-        Time.timeScale = 1f;
-        
+
     }
 }
