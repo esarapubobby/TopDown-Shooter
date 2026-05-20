@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class UiManager : MonoBehaviour
 {
@@ -13,8 +14,11 @@ public class UiManager : MonoBehaviour
 
    public GameObject HomelPannel,settingsPanel,gameoverPanel,hudPanel;
 
+    public TextMeshProUGUI EnemiesKilled;
    public static bool isRetry = false;
     bool openedFromGame = false;
+
+    public int enemiesKilled = 0;
     void Start()
     {
         PlayBtn.onClick.AddListener(Playgame);

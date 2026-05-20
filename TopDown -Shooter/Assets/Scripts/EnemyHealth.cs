@@ -12,6 +12,7 @@ public class EnemyHealth : MonoBehaviour
 
     public enemymovement Enemymovement;
     public EnemyRespawn spawner;
+    UiManager uiManager;
 
     bool Isdead= false;
     public CircleCollider2D enemyCollider;
@@ -21,6 +22,7 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = maxHealth;
         spriteRenderer  = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        uiManager = FindObjectOfType<UiManager>();
     }
 
     public void TakeDamage(int damage)
@@ -41,6 +43,7 @@ public class EnemyHealth : MonoBehaviour
         animator.SetBool("IsDead",Isdead);
         enemyCollider.isTrigger = true;
         Enemymovement.enabled = false;
+        uiManager.enemiesKilled++;
 
         spawner.killedEnemies();
         
