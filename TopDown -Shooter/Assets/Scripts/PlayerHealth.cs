@@ -57,6 +57,7 @@ public class PlayerHealth : MonoBehaviour
 
 
         GetComponent<PlayerController>().enabled = false;
+        GetComponent<MouseControlller>().enabled = false;
         GetComponent<PlayerShoot>().enabled = false;
     }
 }

@@ -9,7 +9,6 @@ public class MouseControlller : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
-       
     }
 
     void Update()

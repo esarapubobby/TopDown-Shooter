@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +8,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] float Speed =4f;
     Vector2 movement;
+
+    public AudioSource audioSource;
 
     // [SerializeField] float rotateSpeed=5f;
 
@@ -25,26 +24,33 @@ public class PlayerController : MonoBehaviour
     
     void FixedUpdate()
     {
-        playerRb.velocity = movement*Speed;
+         Vector2 moveDirection =
+        (Vector2)transform.right * movement.y +
+        (Vector2)transform.up * movement.x;
+
+        playerRb.velocity = moveDirection * Speed;
   
     }
 
-    void OnMove(InputValue inputvalue)
+    public void OnMove(InputValue inputvalue)
     {
         movement = inputvalue.Get<Vector2>();
+        
         bool ismoving = movement.magnitude>0.1f;
+        Debug.Log(ismoving);
         animator.SetBool("IsMove",ismoving);
-    }
-    void Update()
-    {
-        if (Mouse.current.rightButton.wasPressedThisFrame)
-        {
-            animator.SetBool("IsShoot", true);
-        }
 
-        if (Mouse.current.rightButton.wasReleasedThisFrame)
+        if (ismoving)
         {
-            animator.SetBool("IsShoot", false);
+            if (!audioSource.isPlaying)
+            {
+                audioSource.pitch = 2f;
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            audioSource.Stop();
         }
     }
    

@@ -11,6 +11,7 @@ public class EnemyHealth : MonoBehaviour
     Animator animator;
 
     public enemymovement Enemymovement;
+    public EnemyRespawn spawner;
 
     bool Isdead= false;
 
@@ -37,8 +38,10 @@ public class EnemyHealth : MonoBehaviour
     {
         Isdead = true;
         animator.SetBool("IsDead",Isdead);
-
+        
         Enemymovement.enabled = false;
+
+        spawner.killedEnemies();
         
         Destroy(gameObject,2f);
     }

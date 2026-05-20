@@ -8,6 +8,14 @@ public class PlayerShoot : MonoBehaviour
 
     public Transform firePoint;
 
+    Animator animator;
+    public Audiomanager audiomanager;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(1))
@@ -17,6 +25,8 @@ public class PlayerShoot : MonoBehaviour
     }
     void shoot()
     {
+        animator.SetTrigger("IsShoot");
+        audiomanager.playBulletSound();
         Instantiate(bulletprefab,firePoint.position,firePoint.rotation);
     }
 }

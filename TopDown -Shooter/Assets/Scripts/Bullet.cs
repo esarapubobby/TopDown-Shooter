@@ -6,9 +6,12 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 10f;
     public int damage = 50;
+
+    Audiomanager audiomanager;
     void Start()
     {
         Destroy(gameObject,2f);
+        audiomanager = FindObjectOfType<Audiomanager>();
     }
 
     
@@ -26,7 +29,12 @@ public class Bullet : MonoBehaviour
             {
                 enemyHealth.TakeDamage(damage);
             }
-
+            audiomanager.playHitObjectSound();
+            Destroy(gameObject);
+        }
+        else
+        {
+            audiomanager.playHitObjectSound();
             Destroy(gameObject);
         }
     }
