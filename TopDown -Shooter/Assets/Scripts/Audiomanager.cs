@@ -6,13 +6,17 @@ using UnityEngine.UI;
 
 public class Audiomanager : MonoBehaviour
 {
-    AudioSource audioSource;
-    public AudioSource musicSource;
+    public AudioSource audioSource;
+    public AudioSource BackGroundmusicSource;
 
     public AudioClip 
     bulletSound,
     hitSound,
-    enemyAttackSound;
+    enemyAttackSound,
+    DeathSound,
+    wavesound,
+    HoverSound,
+    clickSound;
 
     public Slider musicSlider;
 
@@ -42,11 +46,25 @@ public class Audiomanager : MonoBehaviour
         audioSource.PlayOneShot(enemyAttackSound);
     }
 
+    public void playHoverSound()
+    {
+        audioSource.PlayOneShot(HoverSound);
+    }
+
+    public void playClickSound()
+    {
+        audioSource.PlayOneShot(clickSound);
+    }
+    public void playWaveSound()
+    {
+        audioSource.PlayOneShot(wavesound);
+    }
+
 
 
     void SetMusicVolume(float value)
     {
-        musicSource.volume = value;
+        BackGroundmusicSource.volume = value;
     }
 
     void SetSFXVolume(float value)

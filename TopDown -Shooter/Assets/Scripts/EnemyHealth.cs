@@ -28,7 +28,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-
+        uiManager.bulletsHit++;
         StartCoroutine(hitflash());
 
         if (currentHealth <= 0)
@@ -44,6 +44,7 @@ public class EnemyHealth : MonoBehaviour
         enemyCollider.isTrigger = true;
         Enemymovement.enabled = false;
         uiManager.enemiesKilled++;
+
 
         spawner.killedEnemies();
         

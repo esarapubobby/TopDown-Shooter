@@ -10,6 +10,7 @@ public class PlayerShoot : MonoBehaviour
 
     Animator animator;
     public Audiomanager audiomanager;
+    public UiManager uiManager;
 
     void Start()
     {
@@ -25,6 +26,7 @@ public class PlayerShoot : MonoBehaviour
     }
     void shoot()
     {
+        uiManager.bulletsShot++;
         animator.SetTrigger("IsShoot");
         audiomanager.playBulletSound();
         Instantiate(bulletprefab,firePoint.position,firePoint.rotation);

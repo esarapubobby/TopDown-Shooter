@@ -13,6 +13,8 @@ public class PlayerHealth : MonoBehaviour
 
     public bool isdead = false;
 
+    public Audiomanager audiomanager;
+
     Animator animator;
 
     public UiManager uiManager;
@@ -53,6 +55,44 @@ public class PlayerHealth : MonoBehaviour
         isdead = true;
         uiManager.gameoverPanel.SetActive(true);
         uiManager.hudPanel.SetActive(false);
+
+        audiomanager.audioSource.PlayOneShot(audiomanager.DeathSound);
+        audiomanager.BackGroundmusicSource.Play();
+
+
+        //Enemies count
+        uiManager.EnemiesKilledTxt.text = uiManager.enemiesKilled.ToString();
+
+
+        //Accuracy
+        float accuracy = 0f;
+        if (uiManager.bulletsShot > 0)
+        {
+            accuracy = ((float)uiManager.bulletsHit/uiManager.bulletsShot)*100;
+        }
+        uiManager.AccuracyTxt.text = accuracy.ToString("F0")+"%";
+
+
+
+        //survival Time
+        int minutes =
+        Mathf.FloorToInt(uiManager.survivalTime / 60);
+        int seconds =
+        Mathf.FloorToInt(uiManager.survivalTime % 60);
+
+        uiManager.SurvivalTimeTxt.text =
+        minutes.ToString("00") + ":" +
+        seconds.ToString("00");
+
+
+
+        //score
+        int score = 
+        (uiManager.enemiesKilled * 100)
+        + Mathf.RoundToInt(uiManager.survivalTime)
+        + Mathf.RoundToInt(accuracy / 2);
+        uiManager.scoreTxt.text = score.ToString();
+
         Time.timeScale = 0f;
 
         Debug.Log("player Died");

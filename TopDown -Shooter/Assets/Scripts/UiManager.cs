@@ -14,11 +14,18 @@ public class UiManager : MonoBehaviour
 
    public GameObject HomelPannel,settingsPanel,gameoverPanel,hudPanel;
 
-    public TextMeshProUGUI EnemiesKilled;
+    public TextMeshProUGUI EnemiesKilledTxt,AccuracyTxt,SurvivalTimeTxt,scoreTxt;
    public static bool isRetry = false;
     bool openedFromGame = false;
 
     public int enemiesKilled = 0;
+
+    public int bulletsShot = 0;
+    public int bulletsHit = 0;
+    public float survivalTime = 0f;
+
+    public Audiomanager audiomanager;
+    public EnemyRespawn enemyRespawn;
     void Start()
     {
         PlayBtn.onClick.AddListener(Playgame);
@@ -52,9 +59,15 @@ public class UiManager : MonoBehaviour
             Time.timeScale = 0f;
         }
     }
+    void Update()
+    {
+        survivalTime += Time.deltaTime;
+    }
 
     public void Playgame()
     {
+        StartCoroutine(enemyRespawn.ShowWaveText());
+        audiomanager.BackGroundmusicSource.Play();
         HomelPannel.SetActive(false);
         hudPanel.SetActive(true);
         Time.timeScale = 1f;
@@ -75,6 +88,7 @@ public class UiManager : MonoBehaviour
     }
     public void opensettingsFromGame()
     {
+        audiomanager.BackGroundmusicSource.Stop();
         openedFromGame = true;
         settingsPanel.SetActive(true);
         hudPanel.SetActive(false);
@@ -88,6 +102,7 @@ public class UiManager : MonoBehaviour
 
         if (openedFromGame)
         {
+            audiomanager.BackGroundmusicSource.Play();
             Time.timeScale = 1f;
             hudPanel.SetActive(true);
         }
@@ -110,7 +125,7 @@ public class UiManager : MonoBehaviour
 
     public void  Retrygame()
     {
-
+        audiomanager.BackGroundmusicSource.Play();
         isRetry =true;
         SceneManager.LoadScene(0);
 
