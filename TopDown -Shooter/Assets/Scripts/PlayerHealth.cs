@@ -20,6 +20,7 @@ public class PlayerHealth : MonoBehaviour
     public UiManager uiManager;
 
     float TargetFillAmount;
+    int healamount = 25;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -37,8 +38,6 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth-=damage;
-
-        Debug.Log(currentHealth);
 
         currentHealth = Mathf.Clamp(currentHealth,0,maxHealth);
 
@@ -103,5 +102,19 @@ public class PlayerHealth : MonoBehaviour
         GetComponent<PlayerController>().enabled = false;
         GetComponent<MouseControlller>().enabled = false;
         GetComponent<PlayerShoot>().enabled = false;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("HealthPack"))
+        {
+            currentHealth += healamount;
+
+            currentHealth = Mathf.Clamp(currentHealth,0,maxHealth);
+
+            TargetFillAmount = (float)currentHealth/maxHealth;
+
+            Destroy(collision.gameObject);
+        }
     }
 }

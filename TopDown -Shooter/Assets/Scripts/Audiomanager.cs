@@ -23,7 +23,7 @@ public class Audiomanager : MonoBehaviour
     public Slider sfxSlider;
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        
 
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
 

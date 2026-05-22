@@ -5,7 +5,7 @@ using TMPro;
 
 public class EnemyRespawn : MonoBehaviour
 {
-    public GameObject enemyPrefab;
+    public GameObject enemyPrefab, healthPackprefab;
 
     public Transform player;
     public TextMeshProUGUI waveText;
@@ -59,6 +59,8 @@ public class EnemyRespawn : MonoBehaviour
         {
             currentWave++;
 
+            spawnhealthPack();
+
             StartCoroutine(ShowWaveText());
 
             enemiesToSpawn = currentWave * 5;
@@ -96,9 +98,17 @@ public class EnemyRespawn : MonoBehaviour
 
         enemy.GetComponent<EnemyHealth>().spawner = this;
     }
+    void spawnhealthPack()
+    {
+        Vector2 randomPos = new Vector2(Random.Range(-XspawnRange,XspawnRange),
+                                        Random.Range(-yspawnRange,yspawnRange));
+
+         Instantiate(healthPackprefab,randomPos,Quaternion.identity);
+    }
 
     public IEnumerator ShowWaveText()
     {
+
         canSpawn = false;
 
         audiomanager.playWaveSound();

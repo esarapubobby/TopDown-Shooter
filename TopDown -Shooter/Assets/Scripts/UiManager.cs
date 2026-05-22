@@ -47,6 +47,12 @@ public class UiManager : MonoBehaviour
             hudPanel.SetActive(true);
 
             Time.timeScale = 1f;
+    
+            StartCoroutine(enemyRespawn.ShowWaveText());
+            
+            audiomanager.BackGroundmusicSource.Play();
+
+
 
             isRetry = false;
         }

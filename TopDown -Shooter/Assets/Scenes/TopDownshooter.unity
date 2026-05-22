@@ -433,7 +433,7 @@ GameObject:
   m_Component:
   - component: {fileID: 118534671}
   - component: {fileID: 118534672}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: GameObject (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -518,7 +518,7 @@ GameObject:
   m_Component:
   - component: {fileID: 130724905}
   - component: {fileID: 130724906}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: GameObject (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -872,7 +872,7 @@ GameObject:
   m_Component:
   - component: {fileID: 241612289}
   - component: {fileID: 241612290}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: GameObject (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1417,7 +1417,7 @@ GameObject:
   m_Component:
   - component: {fileID: 408275663}
   - component: {fileID: 408275664}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1641,7 +1641,7 @@ GameObject:
   m_Component:
   - component: {fileID: 429076811}
   - component: {fileID: 429076812}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: GameObject (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1727,7 +1727,7 @@ GameObject:
   m_Component:
   - component: {fileID: 447246928}
   - component: {fileID: 447246930}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: obstacles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2607,7 +2607,7 @@ GameObject:
   - component: {fileID: 657156909}
   - component: {fileID: 657156908}
   - component: {fileID: 657156914}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Game_Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2719,7 +2719,7 @@ GameObject:
   m_Component:
   - component: {fileID: 665486817}
   - component: {fileID: 665486818}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: GameObject (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2836,6 +2836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7357538950370591466, guid: a05b70da833d6414eaf0988e1c626599, type: 3}
+  healthPackprefab: {fileID: 5537277275775538291, guid: 1b2b60e1adf39c84c8c79653f9a4ab83, type: 3}
   player: {fileID: 467714561}
   waveText: {fileID: 1627669657}
   audiomanager: {fileID: 1499409571}
@@ -3113,7 +3114,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 953597242}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3160,7 +3161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 961390474}
   - component: {fileID: 961390475}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: GameObject (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3248,7 +3249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1017631848}
   - component: {fileID: 1017631849}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: GameObject (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3332,7 +3333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1019132889}
   - component: {fileID: 1019132890}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: GameObject (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3668,7 +3669,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1044180612}
   - component: {fileID: 1044180613}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: GameObject (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4424,7 +4425,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1260430393}
   - component: {fileID: 1260430394}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4924,7 +4925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfba3535a1e134e4baf86df91dea5838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 1499409570}
   BackGroundmusicSource: {fileID: 1934322248}
   bulletSound: {fileID: 8300000, guid: 846e5854ac5b9e64fa21384c0598861d, type: 3}
   hitSound: {fileID: 8300000, guid: 4b39b3c549839c04789a811f8d994281, type: 3}
@@ -5755,7 +5756,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1812293273}
   - component: {fileID: 1812293274}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: GameObject (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5844,7 +5845,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1854116756}
   - component: {fileID: 1854116757}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: GameObject (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7064,7 +7065,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2126200673}
   - component: {fileID: 2126200674}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: GameObject (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
