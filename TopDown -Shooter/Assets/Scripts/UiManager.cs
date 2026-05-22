@@ -11,8 +11,9 @@ public class UiManager : MonoBehaviour
    public Button newGameBtn,quitGameBtn,Xbtn;
 
    public Button RetryBtn,QuitBtn;
+   public Button LaststandBtn, challengeBtn,BossRushbtn,Xbtn1;
 
-   public GameObject HomelPannel,settingsPanel,gameoverPanel,hudPanel;
+   public GameObject HomelPannel,settingsPanel,gameoverPanel,hudPanel,selectModePanel;
 
     public TextMeshProUGUI EnemiesKilledTxt,AccuracyTxt,SurvivalTimeTxt,scoreTxt;
    public static bool isRetry = false;
@@ -28,7 +29,7 @@ public class UiManager : MonoBehaviour
     public EnemyRespawn enemyRespawn;
     void Start()
     {
-        PlayBtn.onClick.AddListener(Playgame);
+        PlayBtn.onClick.AddListener(playBtn);
         SettingsBtn.onClick.AddListener(openSettingspanelfromHome);
         ExitBtn.onClick.AddListener(Exit);
         newGameBtn.onClick.AddListener(newgame);
@@ -36,9 +37,14 @@ public class UiManager : MonoBehaviour
         Xbtn.onClick.AddListener(closeSettingsPanel);
         RetryBtn.onClick.AddListener(Retrygame);
         QuitBtn.onClick.AddListener(QuitGame);
+        LaststandBtn.onClick.AddListener(StartLastStand);
+        challengeBtn.onClick.AddListener(StartChallenge);
+        BossRushbtn.onClick.AddListener(StartBossRush);
+        Xbtn1.onClick.AddListener(XBtn);
         
         settingsPanel.SetActive(false);
         gameoverPanel.SetActive(false);
+        selectModePanel.SetActive(false);
 
         if (isRetry)
         {
@@ -49,7 +55,7 @@ public class UiManager : MonoBehaviour
             Time.timeScale = 1f;
     
             StartCoroutine(enemyRespawn.ShowWaveText());
-            
+
             audiomanager.BackGroundmusicSource.Play();
 
 
@@ -70,11 +76,16 @@ public class UiManager : MonoBehaviour
         survivalTime += Time.deltaTime;
     }
 
+    public void playBtn()
+    {
+        HomelPannel.SetActive(false);
+        selectModePanel.SetActive(true);
+    }
     public void Playgame()
     {
         StartCoroutine(enemyRespawn.ShowWaveText());
         audiomanager.BackGroundmusicSource.Play();
-        HomelPannel.SetActive(false);
+        selectModePanel.SetActive(false);
         hudPanel.SetActive(true);
         Time.timeScale = 1f;
 
@@ -135,5 +146,26 @@ public class UiManager : MonoBehaviour
         isRetry =true;
         SceneManager.LoadScene(0);
 
+    }
+
+    public void XBtn()
+    {
+        HomelPannel.SetActive(true);
+        selectModePanel.SetActive(false);
+    }
+
+    public void StartLastStand()
+    {
+        Playgame();
+    }
+
+    public void StartChallenge()
+    {
+        Playgame();
+    }
+
+    public void StartBossRush()
+    {
+        Playgame();
     }
 }
