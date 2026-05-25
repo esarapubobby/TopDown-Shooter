@@ -27,7 +27,7 @@ public class enemymovement : MonoBehaviour
 
 
 
-    bool hasSeenPlayer = false;
+    public bool hasSeenPlayer = false;
     Audiomanager audiomanager;
 
     void Start()

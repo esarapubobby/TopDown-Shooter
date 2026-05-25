@@ -137,10 +137,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patrolSpeed: 0.5
-  chaseSpeed: 2
+  chaseSpeed: 3.5
   detectionDistance: 5
-  stopDistance: 3
+  stopDistance: 2.5
   patrolChangeTime: 3
+  hasSeenPlayer: 0
 --- !u!114 &3387184245513239799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc56e37da1f17e34ebc15f559251838f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 100
   Enemymovement: {fileID: 6863283907902447429}
   spawner: {fileID: 0}
   enemyCollider: {fileID: 158418564491837411}

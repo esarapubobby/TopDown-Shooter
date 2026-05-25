@@ -54,9 +54,11 @@ public class PlayerHealth : MonoBehaviour
         isdead = true;
         uiManager.gameoverPanel.SetActive(true);
         uiManager.hudPanel.SetActive(false);
+        uiManager.challengeHUD.SetActive(false);
+    
 
         audiomanager.audioSource.PlayOneShot(audiomanager.DeathSound);
-        audiomanager.BackGroundmusicSource.Play();
+        audiomanager.BackGroundmusicSource.Stop();
 
 
         //Enemies count
@@ -108,6 +110,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (collision.CompareTag("HealthPack"))
         {
+            audiomanager.playHealthPickUpSound();
             currentHealth += healamount;
 
             currentHealth = Mathf.Clamp(currentHealth,0,maxHealth);

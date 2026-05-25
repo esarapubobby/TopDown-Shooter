@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int maxHealth = 50;
+    public int maxHealth = 100;
     int currentHealth;
     SpriteRenderer spriteRenderer;
 
@@ -27,7 +27,11 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if(Isdead)
+            return;
+    
         currentHealth -= damage;
+        Enemymovement.hasSeenPlayer = true;
         uiManager.bulletsHit++;
         StartCoroutine(hitflash());
 
@@ -41,7 +45,7 @@ public class EnemyHealth : MonoBehaviour
     {
         Isdead = true;
         animator.SetBool("IsDead",Isdead);
-        enemyCollider.isTrigger = true;
+        enemyCollider.enabled = false;
         Enemymovement.enabled = false;
         uiManager.enemiesKilled++;
 

@@ -12,6 +12,10 @@ public class PlayerShoot : MonoBehaviour
     public Audiomanager audiomanager;
     public UiManager uiManager;
 
+    public float fireRate = 0.35f;
+
+    float nextFireTime;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -19,10 +23,16 @@ public class PlayerShoot : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
+
+        if (Time.timeScale==0f)
+        return;
+        if(Input.GetMouseButton(1)
+        && Time.time >= nextFireTime)
         {
+            nextFireTime = Time.time + fireRate;
+
             shoot();
-        } 
+        }
     }
     void shoot()
     {

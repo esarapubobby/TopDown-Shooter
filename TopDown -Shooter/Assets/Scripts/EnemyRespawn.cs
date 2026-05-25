@@ -12,6 +12,8 @@ public class EnemyRespawn : MonoBehaviour
 
     public Audiomanager audiomanager;
 
+    public LayerMask obstacleLayer;
+
     public float spawnInterval = 3f;
 
     public float minDistancefromplayer = 10f;
@@ -71,39 +73,74 @@ public class EnemyRespawn : MonoBehaviour
         }
     }
 
-    void SpawnEnemy()
-    {
-        Vector2 randomPos;
+void SpawnEnemy()
+{
+    Vector2 randomPos;
 
-        do
-        {
-            randomPos = new Vector2(
-                Random.Range(-XspawnRange, XspawnRange),
-                Random.Range(-yspawnRange, yspawnRange)
-            );
-        }
-        while (
-            Vector2.Distance(
-                randomPos,
-                player.position
-            ) < minDistancefromplayer
+    bool validPosition = false;
+
+    int attempts = 0;
+
+    while(!validPosition && attempts < 20)
+    {
+        randomPos = new Vector2(
+            Random.Range(-XspawnRange, XspawnRange),
+            Random.Range(-yspawnRange, yspawnRange)
         );
 
-        GameObject enemy =
+        
+        if(Vector2.Distance(
+            randomPos,
+            player.position)
+            < minDistancefromplayer)
+        {
+            attempts++;
+
+            continue;
+        }
+
+        
+        Collider2D hit =
+        Physics2D.OverlapCircle(
+            randomPos,
+            1f,
+            obstacleLayer
+        );
+
+        
+        if(hit == null)
+        {
+            GameObject enemy =
             Instantiate(
                 enemyPrefab,
                 randomPos,
                 Quaternion.identity
             );
 
-        enemy.GetComponent<EnemyHealth>().spawner = this;
+            enemy.GetComponent<EnemyHealth>().spawner = this;
+
+            validPosition = true;
+        }
+
+        attempts++;
     }
+}
     void spawnhealthPack()
     {
-        Vector2 randomPos = new Vector2(Random.Range(-XspawnRange,XspawnRange),
-                                        Random.Range(-yspawnRange,yspawnRange));
+        bool validPosition = false;
+        while (!validPosition)
+        {
+            Vector2 randomPos = new Vector2(Random.Range(-XspawnRange,XspawnRange),
+                                            Random.Range(-yspawnRange,yspawnRange));
 
-         Instantiate(healthPackprefab,randomPos,Quaternion.identity);
+            Collider2D hit = Physics2D.OverlapCircle(randomPos ,1f,obstacleLayer);
+            if(hit == null )
+            {
+                Instantiate(healthPackprefab,randomPos,Quaternion.identity);
+                validPosition =true;
+            }
+            
+        }
     }
 
     public IEnumerator ShowWaveText()

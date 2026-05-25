@@ -16,7 +16,9 @@ public class Audiomanager : MonoBehaviour
     DeathSound,
     wavesound,
     HoverSound,
-    clickSound;
+    clickSound,
+    VictorySound,
+    healthPickUpSound;
 
     public Slider musicSlider;
 
@@ -44,6 +46,16 @@ public class Audiomanager : MonoBehaviour
     public void playAttackSound()
     {
         audioSource.PlayOneShot(enemyAttackSound);
+    }
+
+    public void playVictorySound()
+    {
+        audioSource.PlayOneShot(VictorySound);
+    }
+
+    public void playHealthPickUpSound()
+    {
+        audioSource.PlayOneShot(healthPickUpSound);
     }
 
     public void playHoverSound()
