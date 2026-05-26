@@ -24,6 +24,8 @@ public class enemymovement : MonoBehaviour
 
     float patrolTimer;
 
+    public int playerDamageAmount = 25;
+
 
 
 
@@ -173,6 +175,6 @@ public class enemymovement : MonoBehaviour
         PlayerHealth playerHealth =
             player.GetComponent<PlayerHealth>();
             
-        playerHealth.TakeDamage(20);
+        playerHealth.TakeDamage(playerDamageAmount);
     }
 }

@@ -7,6 +7,11 @@ public class EnemyRespawn : MonoBehaviour
 {
     public GameObject enemyPrefab, healthPackprefab;
 
+    [Header("Boss Rush")]
+    public GameObject bossPrefab;
+
+    bool bossSpawned = false;
+
     public Transform player;
     public TextMeshProUGUI waveText;
 
@@ -70,6 +75,19 @@ public class EnemyRespawn : MonoBehaviour
             spawnedEnemies = 0;
 
             Debug.Log("Wave = " + currentWave);
+
+            if(GamemodeManager.currentMode == "BOSSRUSH"
+            && currentWave >= 3
+            && !bossSpawned)
+            {
+                bossSpawned = true;
+
+                canSpawn = false;
+
+                SpawnBoss();
+
+                return;
+            }
         }
     }
 
@@ -120,6 +138,64 @@ void SpawnEnemy()
             enemy.GetComponent<EnemyHealth>().spawner = this;
 
             validPosition = true;
+        }
+
+        attempts++;
+    }
+}
+
+void SpawnBoss()
+{
+    Vector2 randomPos;
+
+    bool validPosition = false;
+
+    int attempts = 0;
+
+    while(!validPosition && attempts < 20)
+    {
+        randomPos = new Vector2(
+            Random.Range(-XspawnRange, XspawnRange),
+            Random.Range(-yspawnRange, yspawnRange)
+        );
+
+
+
+        // PLAYER DISTANCE CHECK
+        if(Vector2.Distance(
+            randomPos,
+            player.position)
+            < minDistancefromplayer)
+        {
+            attempts++;
+
+            continue;
+        }
+
+
+
+        // OBSTACLE CHECK
+        Collider2D hit =
+        Physics2D.OverlapCircle(
+            randomPos,
+            1.5f,
+            obstacleLayer
+        );
+
+
+
+        // VALID POSITION
+        if(hit == null)
+        {
+            Instantiate(
+                bossPrefab,
+                randomPos,
+                Quaternion.identity
+            );
+
+            validPosition = true;
+
+            Debug.Log("Boss Spawned");
         }
 
         attempts++;

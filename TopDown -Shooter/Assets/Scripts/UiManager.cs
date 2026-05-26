@@ -40,6 +40,8 @@ public class UiManager : MonoBehaviour
 
     public GameObject ChallengeAlertPanel;
 
+    public GameObject bossAlertPanel;
+
 
 
     [Header("GameOver UI")]
@@ -147,6 +149,8 @@ public class UiManager : MonoBehaviour
         challengeHUD.SetActive(false);
 
         ChallengeAlertPanel.SetActive(false);
+
+        bossAlertPanel.SetActive(false);
 
 
 
@@ -370,6 +374,21 @@ public class UiManager : MonoBehaviour
         }
     }
 
+    IEnumerator StartBossMission()
+    {
+        selectModePanel.SetActive(false);
+
+        bossAlertPanel.SetActive(true);
+
+        Time.timeScale = 0f;
+
+        yield return new WaitForSecondsRealtime(3f);
+
+        bossAlertPanel.SetActive(false);
+
+        Playgame();
+    }
+
 
 
     
@@ -421,7 +440,7 @@ public class UiManager : MonoBehaviour
 
          
         playerHealth.gameOverdetails();
-        
+
         challengeHUD.SetActive(false);
 
         hudPanel.SetActive(false);
@@ -530,8 +549,6 @@ public class UiManager : MonoBehaviour
 
         challengeHUD.SetActive(false);
 
-        Debug.Log("Boss Rush Coming Soon");
-
-        Playgame();
+        StartCoroutine(StartBossMission());
     }
 }
