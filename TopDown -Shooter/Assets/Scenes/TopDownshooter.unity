@@ -2546,7 +2546,7 @@ MonoBehaviour:
   firePoint: {fileID: 377315586}
   audiomanager: {fileID: 1499409571}
   uiManager: {fileID: 420451301}
-  fireRate: 1
+  fireRate: 0.8
 --- !u!114 &467714567
 MonoBehaviour:
   m_ObjectHideFlags: 0
