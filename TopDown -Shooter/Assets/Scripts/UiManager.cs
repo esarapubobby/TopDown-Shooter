@@ -98,6 +98,8 @@ public class UiManager : MonoBehaviour
 
     public EnemyRespawn enemyRespawn;
 
+    public PlayerHealth playerHealth ;
+
 
 
     void Start()
@@ -417,6 +419,9 @@ public class UiManager : MonoBehaviour
 
         gameoverPanel.SetActive(true);
 
+         
+        playerHealth.gameOverdetails();
+        
         challengeHUD.SetActive(false);
 
         hudPanel.SetActive(false);

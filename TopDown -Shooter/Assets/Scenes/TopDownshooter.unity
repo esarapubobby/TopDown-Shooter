@@ -2163,6 +2163,7 @@ MonoBehaviour:
   challengeTargetKills: 50
   audiomanager: {fileID: 1499409571}
   enemyRespawn: {fileID: 707596383}
+  playerHealth: {fileID: 467714567}
 --- !u!1 &429076810
 GameObject:
   m_ObjectHideFlags: 0

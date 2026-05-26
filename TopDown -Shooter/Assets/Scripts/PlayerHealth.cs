@@ -60,7 +60,37 @@ public class PlayerHealth : MonoBehaviour
         audiomanager.audioSource.PlayOneShot(audiomanager.DeathSound);
         audiomanager.BackGroundmusicSource.Stop();
 
+        gameOverdetails();
 
+        Time.timeScale = 0f;
+
+        Debug.Log("player Died");
+
+        animator.SetBool("IsDead",isdead);
+
+
+        GetComponent<PlayerController>().enabled = false;
+        GetComponent<MouseControlller>().enabled = false;
+        GetComponent<PlayerShoot>().enabled = false;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("HealthPack"))
+        {
+            audiomanager.playHealthPickUpSound();
+            currentHealth += healamount;
+
+            currentHealth = Mathf.Clamp(currentHealth,0,maxHealth);
+
+            TargetFillAmount = (float)currentHealth/maxHealth;
+
+            Destroy(collision.gameObject);
+        }
+    }
+
+    public void gameOverdetails()
+    {
         //Enemies count
         uiManager.EnemiesKilledTxt.text = uiManager.enemiesKilled.ToString();
 
@@ -93,31 +123,5 @@ public class PlayerHealth : MonoBehaviour
         + Mathf.RoundToInt(uiManager.survivalTime)
         + Mathf.RoundToInt(accuracy / 2);
         uiManager.scoreTxt.text = score.ToString();
-
-        Time.timeScale = 0f;
-
-        Debug.Log("player Died");
-
-        animator.SetBool("IsDead",isdead);
-
-
-        GetComponent<PlayerController>().enabled = false;
-        GetComponent<MouseControlller>().enabled = false;
-        GetComponent<PlayerShoot>().enabled = false;
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("HealthPack"))
-        {
-            audiomanager.playHealthPickUpSound();
-            currentHealth += healamount;
-
-            currentHealth = Mathf.Clamp(currentHealth,0,maxHealth);
-
-            TargetFillAmount = (float)currentHealth/maxHealth;
-
-            Destroy(collision.gameObject);
-        }
     }
 }
