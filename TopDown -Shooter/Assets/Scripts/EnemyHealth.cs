@@ -54,7 +54,7 @@ public class EnemyHealth : MonoBehaviour
 
         if(gameObject.CompareTag("Boss"))
             {
-                FindObjectOfType<UiManager>().ChallengeVictory();
+                FindObjectOfType<UiManager>().showBosswinPanel();
             }
                     
         

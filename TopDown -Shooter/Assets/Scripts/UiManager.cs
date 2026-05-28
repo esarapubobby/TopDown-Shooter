@@ -21,6 +21,9 @@ public class UiManager : MonoBehaviour
 
     public Button RetryBtn1, HomeBtn;
 
+    public Button RetryBtn2, HomeBtn1;
+
+
 
 
     [Header("Panels")]
@@ -42,6 +45,8 @@ public class UiManager : MonoBehaviour
 
     public GameObject bossAlertPanel;
 
+    public GameObject BossRushWinpanel;
+
 
 
     [Header("GameOver UI")]
@@ -59,13 +64,6 @@ public class UiManager : MonoBehaviour
     public TextMeshProUGUI challengeTimertxt;
 
     public TextMeshProUGUI challengeKillTxt;
-
-
-
-    [Header("Victory Panel UI")]
-    public TextMeshProUGUI victoryKillsTxt;
-
-    public TextMeshProUGUI victoryTimeTxt;
 
 
 
@@ -135,7 +133,9 @@ public class UiManager : MonoBehaviour
 
         HomeBtn.onClick.AddListener(QuitGame);
 
+        RetryBtn2.onClick.AddListener(Retrygame);
 
+        HomeBtn1.onClick.AddListener(QuitGame);
 
         
         settingsPanel.SetActive(false);
@@ -159,20 +159,29 @@ public class UiManager : MonoBehaviour
         {
             HomelPannel.SetActive(false);
 
-            hudPanel.SetActive(true);
-
-            Time.timeScale = 1f;
-
-            StartCoroutine(enemyRespawn.ShowWaveText());
-
-            audiomanager.BackGroundmusicSource.Play();
+            isRetry = false;
 
             if(GamemodeManager.currentMode == "CHALLENGE")
             {
-                challengeHUD.SetActive(true);
+                StartCoroutine(StartChallengeMission());
             }
 
-            isRetry = false;
+            else if(GamemodeManager.currentMode == "BOSSRUSH")
+            {
+                StartCoroutine(StartBossMission());
+            }  
+            else
+            {
+                hudPanel.SetActive(true);
+
+                Time.timeScale = 1f;
+
+                StartCoroutine(enemyRespawn.ShowWaveText());
+
+                audiomanager.BackGroundmusicSource.Play();
+            }  
+
+
         }
         else
         {
@@ -337,6 +346,8 @@ public class UiManager : MonoBehaviour
 
         settingsPanel.SetActive(true);
 
+        enemyRespawn.waveText.gameObject.SetActive(false);
+
         challengeHUD.SetActive(false);
 
         hudPanel.SetActive(false);
@@ -392,29 +403,9 @@ public class UiManager : MonoBehaviour
 
 
     
-    public void ChallengeVictory()
+    void ChallengeVictory()
     {
         challengeCompleted = true;
-
-        victoryKillsTxt.text =
-        enemiesKilled.ToString();
-
-
-
-        int minutes =
-        Mathf.FloorToInt(survivalTime / 60);
-
-        int seconds =
-        Mathf.FloorToInt(survivalTime % 60);
-
-
-
-        victoryTimeTxt.text =
-        minutes.ToString("00")
-        + ":"
-        + seconds.ToString("00");
-
-
 
         victoryPanel.SetActive(true);
 
@@ -454,6 +445,20 @@ public class UiManager : MonoBehaviour
         audiomanager.BackGroundmusicSource.Stop();
     }
 
+    public void showBosswinPanel()
+    {
+        BossRushWinpanel.SetActive(true);
+
+        audiomanager.playVictorySound();
+
+        hudPanel.SetActive(false);
+
+        Time.timeScale = 0f;
+
+        audiomanager.BackGroundmusicSource.Stop();
+
+    }
+
 
 
     
@@ -489,6 +494,8 @@ public class UiManager : MonoBehaviour
 
         victoryPanel.SetActive(false);
 
+        BossRushWinpanel.SetActive(false);
+
         audiomanager.BackGroundmusicSource.Play();
 
         isRetry = true;
@@ -512,8 +519,6 @@ public class UiManager : MonoBehaviour
     public void StartLastStand()
     {
         GamemodeManager.currentMode = "LASTSTAND";
-
-        challengeHUD.SetActive(false);
 
         challengeCompleted = false;
 
@@ -546,8 +551,6 @@ public class UiManager : MonoBehaviour
     public void StartBossRush()
     {
         GamemodeManager.currentMode = "BOSSRUSH";
-
-        challengeHUD.SetActive(false);
 
         StartCoroutine(StartBossMission());
     }
