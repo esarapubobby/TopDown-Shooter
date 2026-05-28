@@ -2228,7 +2228,7 @@ MonoBehaviour:
   ChallengeAlertPanel: {fileID: 1839064181}
   bossAlertPanel: {fileID: 161185895}
   BossRushWinpanel: {fileID: 846215891}
-  BossComingAlert: {fileID: 0}
+  BossComingAlert: {fileID: 1349458740}
   EnemiesKilledTxt: {fileID: 1237628124}
   AccuracyTxt: {fileID: 102268273}
   SurvivalTimeTxt: {fileID: 1876459588}
@@ -3768,7 +3768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7357538950370591466, guid: a05b70da833d6414eaf0988e1c626599, type: 3}
   healthPackprefab: {fileID: 5537277275775538291, guid: 1b2b60e1adf39c84c8c79653f9a4ab83, type: 3}
-  uiManager: {fileID: 0}
+  uiManager: {fileID: 420451301}
   bossPrefab: {fileID: 7357538950370591466, guid: 4ab2883cf8c5f2040b01b76de1a31b30, type: 3}
   player: {fileID: 467714561}
   waveText: {fileID: 1627669657}
@@ -6196,7 +6196,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1349458741
 RectTransform:
   m_ObjectHideFlags: 0
