@@ -47,6 +47,8 @@ public class UiManager : MonoBehaviour
 
     public GameObject BossRushWinpanel;
 
+    public GameObject BossComingAlert;
+
 
 
     [Header("GameOver UI")]
@@ -398,6 +400,19 @@ public class UiManager : MonoBehaviour
         bossAlertPanel.SetActive(false);
 
         Playgame();
+    }
+
+    public IEnumerator ShowBossApproaching()
+    {
+        BossComingAlert.SetActive(true);
+
+        Time.timeScale = 0f;
+
+        yield return new WaitForSecondsRealtime(2f);
+
+        BossComingAlert.SetActive(false);
+
+        Time.timeScale = 1f;
     }
 
 

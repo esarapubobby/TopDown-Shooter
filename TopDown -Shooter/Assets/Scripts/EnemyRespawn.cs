@@ -6,9 +6,11 @@ using TMPro;
 public class EnemyRespawn : MonoBehaviour
 {
     public GameObject enemyPrefab, healthPackprefab;
+    public UiManager uiManager;
 
     [Header("Boss Rush")]
     public GameObject bossPrefab;
+
 
     bool bossSpawned = false;
 
@@ -73,7 +75,7 @@ public class EnemyRespawn : MonoBehaviour
 
                     canSpawn = false;
 
-                    SpawnBoss();
+                    StartCoroutine(BossSpawnSequence());
 
                     bossFightStarted = true;
 
@@ -235,6 +237,15 @@ void SpawnBoss()
         waveText.gameObject.SetActive(false);
 
         canSpawn = true;
+    }
+
+    IEnumerator BossSpawnSequence()
+    {
+        yield return StartCoroutine(
+            uiManager.ShowBossApproaching()
+        );
+
+        SpawnBoss();
     }
 
     public void killedEnemies()
