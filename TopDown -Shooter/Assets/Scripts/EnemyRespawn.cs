@@ -67,7 +67,7 @@ public class EnemyRespawn : MonoBehaviour
         
             if(GamemodeManager.currentMode == "BOSSRUSH")
             {
-                if(currentWave == 1 && !bossSpawned)
+                if(currentWave == 3 && !bossSpawned)
                 {
                     bossSpawned = true;
 
