@@ -51,6 +51,12 @@ public class EnemyHealth : MonoBehaviour
 
 
         spawner.killedEnemies();
+
+        if(gameObject.CompareTag("Boss"))
+            {
+                FindObjectOfType<UiManager>().ChallengeVictory();
+            }
+                    
         
         Destroy(gameObject,2f);
     }

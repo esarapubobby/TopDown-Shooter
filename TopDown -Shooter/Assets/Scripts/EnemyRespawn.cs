@@ -37,6 +37,7 @@ public class EnemyRespawn : MonoBehaviour
 
     float timer;
     bool canSpawn = false;
+    bool bossFightStarted = false;
 
     void Start()
     {
@@ -61,34 +62,38 @@ public class EnemyRespawn : MonoBehaviour
         }
 
         
-        if (aliveEnemies <= 0 &&
-            spawnedEnemies >= enemiesToSpawn)
+        if (aliveEnemies <= 0 && spawnedEnemies>=enemiesToSpawn && !bossFightStarted)
         {
+        
+            if(GamemodeManager.currentMode == "BOSSRUSH")
+            {
+                if(currentWave == 1 && !bossSpawned)
+                {
+                    bossSpawned = true;
+
+                    canSpawn = false;
+
+                    SpawnBoss();
+
+                    bossFightStarted = true;
+
+                    return;
+                }
+            }
+
             currentWave++;
 
             spawnhealthPack();
-
-            StartCoroutine(ShowWaveText());
 
             enemiesToSpawn = currentWave * 5;
 
             spawnedEnemies = 0;
 
-            Debug.Log("Wave = " + currentWave);
+            StartCoroutine(ShowWaveText());
 
-            if(GamemodeManager.currentMode == "BOSSRUSH"
-            && currentWave >= 3
-            && !bossSpawned)
-            {
-                bossSpawned = true;
+            Debug.Log("Wave = " + currentWave);    
 
-                canSpawn = false;
-
-                SpawnBoss();
-
-                return;
             }
-        }
     }
 
 void SpawnEnemy()
@@ -159,9 +164,6 @@ void SpawnBoss()
             Random.Range(-yspawnRange, yspawnRange)
         );
 
-
-
-        // PLAYER DISTANCE CHECK
         if(Vector2.Distance(
             randomPos,
             player.position)
@@ -172,9 +174,6 @@ void SpawnBoss()
             continue;
         }
 
-
-
-        // OBSTACLE CHECK
         Collider2D hit =
         Physics2D.OverlapCircle(
             randomPos,
@@ -182,18 +181,19 @@ void SpawnBoss()
             obstacleLayer
         );
 
-
-
-        // VALID POSITION
         if(hit == null)
         {
-            Instantiate(
+            GameObject boss =Instantiate(
                 bossPrefab,
                 randomPos,
                 Quaternion.identity
             );
 
+            boss.GetComponent<EnemyHealth>().spawner=this;
+
             validPosition = true;
+
+            aliveEnemies = 1;
 
             Debug.Log("Boss Spawned");
         }

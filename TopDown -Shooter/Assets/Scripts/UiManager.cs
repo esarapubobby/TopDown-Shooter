@@ -392,7 +392,7 @@ public class UiManager : MonoBehaviour
 
 
     
-    void ChallengeVictory()
+    public void ChallengeVictory()
     {
         challengeCompleted = true;
 
