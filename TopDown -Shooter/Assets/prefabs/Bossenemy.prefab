@@ -139,7 +139,7 @@ MonoBehaviour:
   patrolSpeed: 0.5
   chaseSpeed: 3.5
   detectionDistance: 10
-  stopDistance: 2.5
+  stopDistance: 5
   patrolChangeTime: 3
   playerDamageAmount: 50
   hasSeenPlayer: 0

@@ -18,7 +18,8 @@ public class Audiomanager : MonoBehaviour
     HoverSound,
     clickSound,
     VictorySound,
-    healthPickUpSound;
+    healthPickUpSound,
+    bosswarningSound;
 
     public Slider musicSlider;
 
@@ -72,7 +73,12 @@ public class Audiomanager : MonoBehaviour
         audioSource.PlayOneShot(wavesound);
     }
 
+    public void playBosswarnSound()
+    {
+        audioSource.PlayOneShot(bosswarningSound);
+    }
 
+    
 
     void SetMusicVolume(float value)
     {

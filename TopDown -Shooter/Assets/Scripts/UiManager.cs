@@ -406,6 +406,8 @@ public class UiManager : MonoBehaviour
     {
         BossComingAlert.SetActive(true);
 
+        audiomanager.playBosswarnSound();
+
         Time.timeScale = 0f;
 
         yield return new WaitForSecondsRealtime(2f);
