@@ -42,24 +42,24 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: UI
-    uniqueID: 3743276797
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: BackRound
     uniqueID: 293249113
     locked: 0
-  - name: health
-    uniqueID: 1178030219
-    locked: 0
-  - name: Bullets
-    uniqueID: 1109351643
-    locked: 0
   - name: Player
     uniqueID: 2703366811
     locked: 0
   - name: Enemy
     uniqueID: 1841010189
+    locked: 0
+  - name: UI
+    uniqueID: 3743276797
+    locked: 0
+  - name: health
+    uniqueID: 1178030219
+    locked: 0
+  - name: Bullets
+    uniqueID: 1109351643
     locked: 0

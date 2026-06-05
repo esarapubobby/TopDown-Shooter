@@ -1,47 +1,53 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using PinePie.SimpleJoystick;
 
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D playerRb;
     Animator animator;
 
-    [SerializeField] float Speed =4f;
+    [SerializeField] float Speed = 4f;
+
     Vector2 movement;
 
     public AudioSource audioSource;
 
-    // [SerializeField] float rotateSpeed=5f;
+    public JoystickController moveJoystick;
+
+    void Awake()
+    {
+        playerRb = GetComponent<Rigidbody2D>();
+    }
 
     void Start()
     {
         animator = GetComponent<Animator>();
     }
-    void Awake()
-    {
-        playerRb = GetComponent<Rigidbody2D>();
-    }
-    
-    void FixedUpdate()
-    {
-         Vector2 moveDirection =
-        (Vector2)transform.right * movement.y +
-        (Vector2)transform.up * movement.x;
 
-        playerRb.velocity = moveDirection * Speed;
-  
-    }
-
-    public void OnMove(InputValue inputvalue)
+    void Update()
     {
-        movement = inputvalue.Get<Vector2>();
-        
-        bool ismoving = movement.magnitude>0.1f;
-        Debug.Log(ismoving);
-        animator.SetBool("IsMove",ismoving);
+        movement = moveJoystick.InputDirection;
+        Debug.Log(movement);
 
-        if (ismoving)
+        bool isMoving = movement.magnitude > 0.1f;
+
+        animator.SetBool("IsMove", isMoving);
+
+        if (isMoving)
         {
+            float angle =
+                Mathf.Atan2(
+                    movement.y,
+                    movement.x
+                ) * Mathf.Rad2Deg;
+
+            transform.rotation =
+                Quaternion.Euler(
+                    0,
+                    0,
+                    angle
+                );
+
             if (!audioSource.isPlaying)
             {
                 audioSource.pitch = 2f;
@@ -53,5 +59,9 @@ public class PlayerController : MonoBehaviour
             audioSource.Stop();
         }
     }
-   
+
+    void FixedUpdate()
+    {
+        playerRb.velocity = movement * Speed;
+    }
 }

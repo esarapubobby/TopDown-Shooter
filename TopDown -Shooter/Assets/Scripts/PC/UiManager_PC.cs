@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-public class UiManager : MonoBehaviour
+public class UiManager_PC : MonoBehaviour
 {
     [Header("Buttons")]
     public Button PlayBtn, SettingsBtn, ExitBtn;
@@ -48,7 +48,6 @@ public class UiManager : MonoBehaviour
     public GameObject BossRushWinpanel;
 
     public GameObject BossComingAlert;
-    public GameObject controlPanel;
 
 
 
@@ -155,7 +154,6 @@ public class UiManager : MonoBehaviour
 
         bossAlertPanel.SetActive(false);
 
-        controlPanel.SetActive(false);
 
 
 
@@ -163,7 +161,6 @@ public class UiManager : MonoBehaviour
         if (isRetry)
         {
             HomelPannel.SetActive(false);
-            controlPanel.SetActive(true);
 
 
             isRetry = false;
@@ -288,7 +285,6 @@ public class UiManager : MonoBehaviour
 
         hudPanel.SetActive(true);
 
-        controlPanel.SetActive(true);
 
         Time.timeScale = 1f;
     }
@@ -343,7 +339,6 @@ public class UiManager : MonoBehaviour
 
         hudPanel.SetActive(false);
 
-        controlPanel.SetActive(false);
 
     }
 
@@ -364,7 +359,6 @@ public class UiManager : MonoBehaviour
 
         hudPanel.SetActive(false);
 
-        controlPanel.SetActive(false);
 
 
         Time.timeScale = 0f;
@@ -385,7 +379,6 @@ public class UiManager : MonoBehaviour
 
             hudPanel.SetActive(true);
 
-            controlPanel.SetActive(true);
 
 
             if(GamemodeManager.currentMode == "CHALLENGE")
@@ -448,7 +441,6 @@ public class UiManager : MonoBehaviour
 
         challengeHUD.SetActive(false);
 
-        controlPanel.SetActive(false);
 
 
         Time.timeScale = 0f;
@@ -472,7 +464,6 @@ public class UiManager : MonoBehaviour
 
         hudPanel.SetActive(false);
         
-        controlPanel.SetActive(false);
 
 
         Time.timeScale = 0f;

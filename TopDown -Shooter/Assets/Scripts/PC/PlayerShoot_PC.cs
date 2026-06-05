@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerShoot : MonoBehaviour
+public class PlayerShoot_PC : MonoBehaviour
 {
     public GameObject bulletprefab;
 
@@ -23,16 +23,22 @@ public class PlayerShoot : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void Shoot()
+    void Update()
     {
         if (Time.timeScale == 0f)
             return;
 
-        if (Time.time < nextFireTime)
-            return;
+        if (Input.GetMouseButton(1)
+            && Time.time >= nextFireTime)
+        {
+            nextFireTime = Time.time + fireRate;
 
-        nextFireTime = Time.time + fireRate;
+            shoot();
+        }
+    }
 
+    void shoot()
+    {
         uiManager.bulletsShot++;
 
         animator.SetTrigger("IsShoot");
