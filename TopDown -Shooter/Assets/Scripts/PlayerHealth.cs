@@ -55,10 +55,10 @@ public class PlayerHealth : MonoBehaviour
         uiManager.gameoverPanel.SetActive(true);
         uiManager.hudPanel.SetActive(false);
         uiManager.challengeHUD.SetActive(false);
-        uiManager.controlPanel.SetActive(false);
+        // uiManager.controlPanel.SetActive(false);
         StopAllCoroutines();
         FindAnyObjectByType<EnemyRespawn>().waveText.gameObject.SetActive(false);
-        FindAnyObjectByType<PlayerController>().audioSource.Stop();
+        FindAnyObjectByType<PlayerController_PC>().audioSource.Stop();
     
 
         audiomanager.audioSource.PlayOneShot(audiomanager.DeathSound);
@@ -74,9 +74,9 @@ public class PlayerHealth : MonoBehaviour
         animator.SetBool("IsDead",isdead);
 
 
-        GetComponent<PlayerController>().enabled = false;
+        GetComponent<PlayerController_PC>().enabled = false;
         GetComponent<MouseControlller>().enabled = false;
-        GetComponent<PlayerShoot>().enabled = false;
+        GetComponent<PlayerShoot_PC>().enabled = false;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
