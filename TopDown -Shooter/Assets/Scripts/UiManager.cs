@@ -404,7 +404,7 @@ public class UiManager : MonoBehaviour
 
         Time.timeScale = 0f;
 
-        yield return new WaitForSecondsRealtime(3f);
+        yield return new WaitForSecondsRealtime(5f);
 
         bossAlertPanel.SetActive(false);
 
@@ -419,7 +419,7 @@ public class UiManager : MonoBehaviour
 
         Time.timeScale = 0f;
 
-        yield return new WaitForSecondsRealtime(2f);
+        yield return new WaitForSecondsRealtime(6f);
 
         BossComingAlert.SetActive(false);
 
