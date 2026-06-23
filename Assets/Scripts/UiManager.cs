@@ -49,6 +49,8 @@ public class UiManager : MonoBehaviour
 
     public GameObject BossComingAlert;
 
+    public GameObject ControlPanel;
+
 
 
     [Header("GameOver UI")]
@@ -153,6 +155,7 @@ public class UiManager : MonoBehaviour
         ChallengeAlertPanel.SetActive(false);
 
         bossAlertPanel.SetActive(false);
+        ControlPanel.SetActive(false);
 
 
 
@@ -178,6 +181,9 @@ public class UiManager : MonoBehaviour
             {
                 hudPanel.SetActive(true);
 
+                ControlPanel.SetActive(true);
+
+
                 Time.timeScale = 1f;
 
                 StartCoroutine(enemyRespawn.ShowWaveText());
@@ -192,6 +198,9 @@ public class UiManager : MonoBehaviour
             HomelPannel.SetActive(true);
 
             hudPanel.SetActive(false);
+
+            ControlPanel.SetActive(false);
+
 
             Time.timeScale = 0f;
         }
@@ -285,6 +294,9 @@ public class UiManager : MonoBehaviour
 
         hudPanel.SetActive(true);
 
+        ControlPanel.SetActive(true);
+
+
 
         Time.timeScale = 1f;
     }
@@ -307,6 +319,9 @@ public class UiManager : MonoBehaviour
         ChallengeAlertPanel.SetActive(false);
         
         challengeHUD.SetActive(true);
+
+        ControlPanel.SetActive(true);
+
 
 
         Playgame();
@@ -339,6 +354,8 @@ public class UiManager : MonoBehaviour
 
         hudPanel.SetActive(false);
 
+        ControlPanel.SetActive(false);
+
 
     }
 
@@ -359,6 +376,7 @@ public class UiManager : MonoBehaviour
 
         hudPanel.SetActive(false);
 
+        ControlPanel.SetActive(false);
 
 
         Time.timeScale = 0f;
@@ -378,6 +396,9 @@ public class UiManager : MonoBehaviour
             Time.timeScale = 1f;
 
             hudPanel.SetActive(true);
+
+            ControlPanel.SetActive(true);
+
 
 
 
@@ -408,6 +429,8 @@ public class UiManager : MonoBehaviour
 
         bossAlertPanel.SetActive(false);
 
+        ControlPanel.SetActive(true);
+
         Playgame();
     }
 
@@ -417,11 +440,15 @@ public class UiManager : MonoBehaviour
 
         audiomanager.playBosswarnSound();
 
+        ControlPanel.SetActive(false);
+
         Time.timeScale = 0f;
 
         yield return new WaitForSecondsRealtime(6f);
 
         BossComingAlert.SetActive(false);
+
+        ControlPanel.SetActive(true);
 
         Time.timeScale = 1f;
     }
@@ -440,6 +467,8 @@ public class UiManager : MonoBehaviour
         hudPanel.SetActive(false);
 
         challengeHUD.SetActive(false);
+
+        ControlPanel.SetActive(false);
 
 
 
@@ -463,6 +492,9 @@ public class UiManager : MonoBehaviour
         challengeHUD.SetActive(false);
 
         hudPanel.SetActive(false);
+
+        ControlPanel.SetActive(false);
+
         
 
 
@@ -486,6 +518,9 @@ public class UiManager : MonoBehaviour
         Time.timeScale = 0f;
 
         audiomanager.BackGroundmusicSource.Stop();
+
+        ControlPanel.SetActive(false);
+
 
     }
 

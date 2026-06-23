@@ -55,6 +55,8 @@ public class PlayerHealth : MonoBehaviour
         uiManager.gameoverPanel.SetActive(true);
         uiManager.hudPanel.SetActive(false);
         uiManager.challengeHUD.SetActive(false);
+        uiManager.ControlPanel.SetActive(false);
+
         // uiManager.controlPanel.SetActive(false);
         StopAllCoroutines();
         FindAnyObjectByType<EnemyRespawn>().waveText.gameObject.SetActive(false);
