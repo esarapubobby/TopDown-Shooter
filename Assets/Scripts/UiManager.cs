@@ -103,6 +103,7 @@ public class UiManager : MonoBehaviour
     public EnemyRespawn enemyRespawn;
 
     public PlayerHealth playerHealth ;
+    public GameObject noInternetText;
 
 
 
@@ -311,6 +312,8 @@ public class UiManager : MonoBehaviour
     
     IEnumerator StartChallengeMission()
     {
+        AdManager.Instance.HideBanner();
+
         selectModePanel.SetActive(false);
 
         ChallengeAlertPanel.SetActive(true);
@@ -424,6 +427,8 @@ public class UiManager : MonoBehaviour
 
     IEnumerator StartBossMission()
     {
+        AdManager.Instance.HideBanner();
+
         selectModePanel.SetActive(false);
 
         bossAlertPanel.SetActive(true);
@@ -631,4 +636,18 @@ public class UiManager : MonoBehaviour
     {
         AdManager.Instance.ShowRewardedAd(playerHealth.RevivePlayer);
     }
+
+public void ShowNoInternetMessage()
+{
+    StartCoroutine(NoInternetRoutine());
+}
+
+IEnumerator NoInternetRoutine()
+{
+    noInternetText.SetActive(true);
+
+    yield return new WaitForSecondsRealtime(2f);
+
+    noInternetText.SetActive(false);
+}
 }

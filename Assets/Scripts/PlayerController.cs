@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         movement = moveJoystick.InputDirection;
-        Debug.Log(movement);
 
         bool isMoving = movement.magnitude > 0.1f;
 
