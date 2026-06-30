@@ -197,6 +197,8 @@ public class UiManager : MonoBehaviour
         {
             HomelPannel.SetActive(true);
 
+            AdManager.Instance.ShowBanner();
+
             hudPanel.SetActive(false);
 
             ControlPanel.SetActive(false);
@@ -277,6 +279,7 @@ public class UiManager : MonoBehaviour
     public void playBtn()
     {
         HomelPannel.SetActive(false);
+        AdManager.Instance.HideBanner();
 
         selectModePanel.SetActive(true);
     }
@@ -286,6 +289,8 @@ public class UiManager : MonoBehaviour
     
     public void Playgame()
     {
+        AdManager.Instance.HideBanner();
+
         StartCoroutine(enemyRespawn.ShowWaveText());
 
         audiomanager.BackGroundmusicSource.Play();
@@ -336,7 +341,7 @@ public class UiManager : MonoBehaviour
 
         GamemodeManager.currentMode = "";
 
-        SceneManager.LoadScene(0);
+        AdManager.Instance.ShowRetryAd();
 
         Time.timeScale = 0f;
     }
@@ -567,7 +572,7 @@ public class UiManager : MonoBehaviour
 
         isRetry = true;
 
-        SceneManager.LoadScene(0);
+        AdManager.Instance.ShowRetryAd();
     }
 
 
@@ -620,5 +625,10 @@ public class UiManager : MonoBehaviour
         GamemodeManager.currentMode = "BOSSRUSH";
 
         StartCoroutine(StartBossMission());
+    }
+
+    public void ContinueGame()
+    {
+        AdManager.Instance.ShowRewardedAd(playerHealth.RevivePlayer);
     }
 }

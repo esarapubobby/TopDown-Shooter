@@ -131,4 +131,28 @@ public class PlayerHealth : MonoBehaviour
         + Mathf.RoundToInt(accuracy / 2);
         uiManager.scoreTxt.text = score.ToString();
     }
+    public void RevivePlayer()
+    {
+        currentHealth = maxHealth / 2;
+
+        TargetFillAmount = (float)currentHealth / maxHealth;
+
+        isdead = false;
+
+        animator.SetBool("IsDead", false);
+
+        GetComponent<PlayerController>().enabled = true;
+        GetComponent<PlayerShoot>().enabled = true;
+
+        uiManager.gameoverPanel.SetActive(false);
+        uiManager.hudPanel.SetActive(true);
+        uiManager.ControlPanel.SetActive(true);
+
+        if (GamemodeManager.currentMode == "CHALLENGE")
+            uiManager.challengeHUD.SetActive(true);
+
+        audiomanager.BackGroundmusicSource.Play();
+
+        Time.timeScale = 1f;
+    }
 }
