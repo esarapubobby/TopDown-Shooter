@@ -109,6 +109,7 @@ public class UiManager : MonoBehaviour
 
     void Start()
     {
+
         
         PlayBtn.onClick.AddListener(playBtn);
 
@@ -198,7 +199,7 @@ public class UiManager : MonoBehaviour
         {
             HomelPannel.SetActive(true);
 
-            AdManager.Instance.ShowBanner();
+            AdManager.Instance.HideBanner();
 
             hudPanel.SetActive(false);
 
@@ -386,6 +387,9 @@ public class UiManager : MonoBehaviour
 
         ControlPanel.SetActive(false);
 
+        AdManager.Instance.ShowBanner();
+
+
 
         Time.timeScale = 0f;
     }
@@ -408,6 +412,7 @@ public class UiManager : MonoBehaviour
             ControlPanel.SetActive(true);
 
 
+            AdManager.Instance.HideBanner();
 
 
             if(GamemodeManager.currentMode == "CHALLENGE")
@@ -481,6 +486,7 @@ public class UiManager : MonoBehaviour
         ControlPanel.SetActive(false);
 
 
+        AdManager.Instance.ShowBanner();
 
         Time.timeScale = 0f;
 
@@ -505,6 +511,7 @@ public class UiManager : MonoBehaviour
 
         ControlPanel.SetActive(false);
 
+        AdManager.Instance.ShowBanner();
         
 
 
@@ -530,6 +537,9 @@ public class UiManager : MonoBehaviour
         audiomanager.BackGroundmusicSource.Stop();
 
         ControlPanel.SetActive(false);
+
+        AdManager.Instance.ShowBanner();
+
 
 
     }

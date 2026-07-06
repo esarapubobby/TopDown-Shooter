@@ -10,14 +10,14 @@ public class AdManager : MonoBehaviour
     private RewardedAd rewardedAd;
     private Action rewardAction;
     private static int RetryCount = 0;
-private string interstitialId =
-    "ca-app-pub-4208468421244489/3650925807";
+    private string interstitialId =
+        "ca-app-pub-9565881819222312/2316581261";
 
-private string bannerId =
-    "ca-app-pub-4208468421244489/2580965251";
+    private string bannerId =
+        "ca-app-pub-9565881819222312/5134316292";
 
-private string rewardedId =
-    "ca-app-pub-4208468421244489/3337276639";    
+    private string rewardedId =
+        "ca-app-pub-9565881819222312/8690417926";    
     void Awake()
     {
         if (Instance == null)

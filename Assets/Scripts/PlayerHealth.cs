@@ -66,6 +66,7 @@ public class PlayerHealth : MonoBehaviour
         audiomanager.audioSource.PlayOneShot(audiomanager.DeathSound);
         audiomanager.BackGroundmusicSource.Stop();
         
+        AdManager.Instance.ShowBanner();
 
         gameOverdetails();
 
