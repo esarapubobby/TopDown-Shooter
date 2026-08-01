@@ -24,13 +24,15 @@ public class Audiomanager : MonoBehaviour
     public Slider musicSlider;
 
     public Slider sfxSlider;
+
     void Start()
     {
         
-
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
 
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+
+
 
     }
 
@@ -89,5 +91,6 @@ public class Audiomanager : MonoBehaviour
     {
         audioSource.volume = value;
     }
-    
+
+        
 }
