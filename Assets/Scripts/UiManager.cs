@@ -344,10 +344,13 @@ public class UiManager : MonoBehaviour
         isRetry = false;
 
         GamemodeManager.currentMode = "";
+        
+        AdManager.Instance.HideBanner();
 
-        AdManager.Instance.ShowRetryAd();
 
-        Time.timeScale = 0f;
+        SceneManager.LoadScene(0);
+
+
     }
 
 
@@ -580,6 +583,8 @@ public class UiManager : MonoBehaviour
         victoryPanel.SetActive(false);
 
         BossRushWinpanel.SetActive(false);
+
+        AdManager.Instance.HideBanner();
 
 
 

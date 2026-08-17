@@ -48,15 +48,15 @@ public class AdManager : MonoBehaviour
         AdRequest request = new AdRequest();
         bannerView.LoadAd(request);
     }
-public void ShowBanner()
-{
-    if (bannerView == null)
+    public void ShowBanner()
     {
-        LoadBanner();
-        return;
+        if (bannerView == null)
+        {
+            LoadBanner();
+            return;
+        }
+        bannerView.Show();
     }
-    bannerView.Show();
-}
     public void HideBanner()
     {
         if (bannerView != null)
@@ -92,7 +92,7 @@ public void ShowBanner()
     public void ShowRetryAd()
     {
         RetryCount ++;
-        if (RetryCount%2==0 && interstitialAd != null &&
+        if (RetryCount%4==0 && interstitialAd != null &&
             interstitialAd.CanShowAd())
         {
             interstitialAd.Show();
