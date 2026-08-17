@@ -63,3 +63,6 @@ TagManager:
   - name: Bullets
     uniqueID: 1109351643
     locked: 0
+  - name: Crosshair
+    uniqueID: 49395709
+    locked: 0

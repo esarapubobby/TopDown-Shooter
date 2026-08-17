@@ -23,6 +23,8 @@ public class UiManager : MonoBehaviour
 
     public Button RetryBtn2, HomeBtn1;
 
+    public Button ContinueBtn;
+
 
 
 
@@ -50,6 +52,8 @@ public class UiManager : MonoBehaviour
     public GameObject BossComingAlert;
 
     public GameObject ControlPanel;
+    public GameObject HighestwavePanel;
+
 
 
 
@@ -105,6 +109,11 @@ public class UiManager : MonoBehaviour
     public PlayerHealth playerHealth ;
     public GameObject noInternetText;
 
+    public GameObject HighestWaveFrames;
+
+    public TextMeshProUGUI[] HighestWaves;
+
+
 
 
     void Start()
@@ -143,6 +152,9 @@ public class UiManager : MonoBehaviour
 
         HomeBtn1.onClick.AddListener(QuitGame);
 
+        ContinueBtn.onClick.AddListener(closeHighestWaveapnel);
+
+
         
         settingsPanel.SetActive(false);
 
@@ -157,7 +169,11 @@ public class UiManager : MonoBehaviour
         ChallengeAlertPanel.SetActive(false);
 
         bossAlertPanel.SetActive(false);
+
         ControlPanel.SetActive(false);
+
+        HighestWaveFrames.SetActive(false);
+
 
 
 
@@ -169,6 +185,11 @@ public class UiManager : MonoBehaviour
 
 
             isRetry = false;
+            if(GamemodeManager.currentMode == "LASTSTAND")
+            {
+                HighestWaves[0].text = GameStats.GetHighestWave().ToString();
+                HighestWaveFrames.SetActive(true);
+            }
 
             if(GamemodeManager.currentMode == "CHALLENGE")
             {
@@ -224,6 +245,12 @@ public class UiManager : MonoBehaviour
 
 
 
+        challengeKillTxt.text =
+        "Kills : "
+        + enemiesKilled.ToString()
+        + " / "
+        + challengeTargetKills.ToString();
+        
         
         if (GamemodeManager.currentMode == "CHALLENGE"
             && !challengeCompleted)
@@ -250,11 +277,6 @@ public class UiManager : MonoBehaviour
 
 
 
-            challengeKillTxt.text =
-            "Kills : "
-            + enemiesKilled.ToString()
-            + " / "
-            + challengeTargetKills.ToString();
 
 
 
@@ -614,6 +636,9 @@ public class UiManager : MonoBehaviour
 
         challengeCompleted = false;
 
+        HighestWaves[0].text = GameStats.GetHighestWave().ToString();
+        HighestWaveFrames.SetActive(true);
+
         Playgame();
     }
 
@@ -652,17 +677,25 @@ public class UiManager : MonoBehaviour
         AdManager.Instance.ShowRewardedAd(playerHealth.RevivePlayer);
     }
 
-public void ShowNoInternetMessage()
-{
+    public void ShowNoInternetMessage()
+    {
     StartCoroutine(NoInternetRoutine());
-}
+    }
 
-IEnumerator NoInternetRoutine()
-{
+    IEnumerator NoInternetRoutine()
+    {
     noInternetText.SetActive(true);
 
     yield return new WaitForSecondsRealtime(2f);
 
     noInternetText.SetActive(false);
-}
+    }
+    public void ShowHighestWavePanel()
+    {
+    HighestwavePanel.SetActive(true);
+    }
+    public void closeHighestWaveapnel()
+    {
+        HighestwavePanel.SetActive(false);
+    }
 }

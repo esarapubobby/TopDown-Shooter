@@ -21,12 +21,14 @@ public class PlayerHealth : MonoBehaviour
 
     float TargetFillAmount;
     int healamount = 25;
+    EnemyRespawn enemyRespawn;
     void Start()
     {
         animator = GetComponent<Animator>();
         currentHealth = maxHealth;
         TargetFillAmount = 1f;
         HealthFill.fillAmount = 1f;
+        enemyRespawn = FindAnyObjectByType<EnemyRespawn>();
 
     }
     void Update()
@@ -57,10 +59,10 @@ public class PlayerHealth : MonoBehaviour
         uiManager.challengeHUD.SetActive(false);
         uiManager.ControlPanel.SetActive(false);
 
-        // uiManager.controlPanel.SetActive(false);
+       
         StopAllCoroutines();
         FindAnyObjectByType<EnemyRespawn>().waveText.gameObject.SetActive(false);
-        FindAnyObjectByType<PlayerController_PC>().audioSource.Stop();
+        FindAnyObjectByType<PlayerController>().audioSource.Stop();
     
 
         audiomanager.audioSource.PlayOneShot(audiomanager.DeathSound);
@@ -68,18 +70,20 @@ public class PlayerHealth : MonoBehaviour
         
         AdManager.Instance.ShowBanner();
 
+        if((enemyRespawn.currentWave-1)> GameStats.GetHighestWave())
+        {
+            uiManager.ShowHighestWavePanel();
+            uiManager.HighestWaves[1].text = GameStats.GetHighestWave().ToString();
+            GameStats.SaveHighestWave(enemyRespawn.currentWave);
+        }
+
         gameOverdetails();
 
-        Time.timeScale = 0f;
-
-        Debug.Log("player Died");
 
         animator.SetBool("IsDead",isdead);
 
 
-        GetComponent<PlayerController_PC>().enabled = false;
-        GetComponent<MouseControlller>().enabled = false;
-        GetComponent<PlayerShoot_PC>().enabled = false;
+
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -99,6 +103,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void gameOverdetails()
     {
+
         //Enemies count
         uiManager.EnemiesKilledTxt.text = uiManager.enemiesKilled.ToString();
 

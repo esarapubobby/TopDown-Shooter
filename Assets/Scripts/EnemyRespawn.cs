@@ -29,7 +29,7 @@ public class EnemyRespawn : MonoBehaviour
 
     public float yspawnRange = 10f;
 
-    int currentWave = 1;
+    public int currentWave = 1;
 
     int enemiesToSpawn;
 
@@ -91,9 +91,7 @@ public class EnemyRespawn : MonoBehaviour
 
             spawnedEnemies = 0;
 
-            StartCoroutine(ShowWaveText());
-
-            Debug.Log("Wave = " + currentWave);    
+            StartCoroutine(ShowWaveText());   
 
             }
     }
