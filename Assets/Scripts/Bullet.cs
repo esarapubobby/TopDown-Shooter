@@ -22,6 +22,7 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        
          if(collision.gameObject.tag == "Enemy" || collision.CompareTag("Boss"))
         {
             EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
@@ -32,7 +33,7 @@ public class Bullet : MonoBehaviour
             audiomanager.playHitObjectSound();
             Destroy(gameObject);
         }
-        else
+        else if(collision.gameObject.tag == "Objects" )
         {
             audiomanager.playHitObjectSound();
             Destroy(gameObject);

@@ -6,13 +6,15 @@ public class CrossHair : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
     [SerializeField] private Transform firePoint;
-    [SerializeField] private LayerMask objectsLayerMask;
+    [SerializeField] private float aimDistance=5f;
+    int layerMask;
 
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         UpdateCrossHairPos();
+        layerMask = LayerMask.GetMask("Enemy","Objects");
     }
     void Update()
     {
@@ -20,11 +22,15 @@ public class CrossHair : MonoBehaviour
     }
     private void UpdateCrossHairPos()
     {
-        RaycastHit2D hit = Physics2D.Raycast(firePoint.position, firePoint.right,5f,objectsLayerMask);
+        RaycastHit2D hit = Physics2D.Raycast(firePoint.position, firePoint.right,aimDistance,layerMask);
 
         if (hit.collider != null)
         {
             transform.position = hit.point;
+        }
+        else
+        {
+            transform.position = firePoint.position+ firePoint.right*aimDistance;
         }
     }
 

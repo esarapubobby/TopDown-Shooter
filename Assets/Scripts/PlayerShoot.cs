@@ -41,7 +41,7 @@ public class PlayerShoot : MonoBehaviour
 
         Instantiate(
             bulletprefab,
-            firePoint.position,
+            new Vector2(firePoint.position.x-1f,firePoint.position.y),
             firePoint.rotation
         );
     }

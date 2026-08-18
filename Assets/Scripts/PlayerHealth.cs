@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
-    int currentHealth;
+    public int currentHealth;
     public Image HealthFill;
 
     public float smoothspeed = 5f;
@@ -19,8 +19,8 @@ public class PlayerHealth : MonoBehaviour
 
     public UiManager uiManager;
 
-    float TargetFillAmount;
-    int healamount = 25;
+    public float TargetFillAmount;
+    public int healamount = 25;
     EnemyRespawn enemyRespawn;
     void Start()
     {
@@ -86,20 +86,7 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("HealthPack"))
-        {
-            audiomanager.playHealthPickUpSound();
-            currentHealth += healamount;
 
-            currentHealth = Mathf.Clamp(currentHealth,0,maxHealth);
-
-            TargetFillAmount = (float)currentHealth/maxHealth;
-
-            Destroy(collision.gameObject);
-        }
-    }
 
     public void gameOverdetails()
     {

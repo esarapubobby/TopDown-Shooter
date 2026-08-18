@@ -913,7 +913,7 @@ GameObject:
   - component: {fileID: 118534672}
   m_Layer: 3
   m_Name: GameObject (11)
-  m_TagString: Untagged
+  m_TagString: Objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1182,7 +1182,7 @@ GameObject:
   - component: {fileID: 130724906}
   m_Layer: 3
   m_Name: GameObject (10)
-  m_TagString: Untagged
+  m_TagString: Objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1951,7 +1951,7 @@ GameObject:
   - component: {fileID: 241612290}
   m_Layer: 3
   m_Name: GameObject (13)
-  m_TagString: Untagged
+  m_TagString: Objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2294,7 +2294,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 6, y: -7.8317566}
+  m_AnchoredPosition: {x: 6, y: -7.831726}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &280123934
@@ -2826,7 +2826,7 @@ GameObject:
   - component: {fileID: 408275664}
   m_Layer: 3
   m_Name: GameObject
-  m_TagString: Untagged
+  m_TagString: Objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3089,7 +3089,7 @@ GameObject:
   - component: {fileID: 429076812}
   m_Layer: 3
   m_Name: GameObject (12)
-  m_TagString: Untagged
+  m_TagString: Objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3251,7 +3251,7 @@ GameObject:
   - component: {fileID: 447246929}
   m_Layer: 3
   m_Name: obstacles
-  m_TagString: Untagged
+  m_TagString: Objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3375,7 +3375,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10.853, y: 0.58}
+  m_AnchoredPosition: {x: -10.853, y: 0.81}
   m_SizeDelta: {x: 3.13, y: 2.07}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!50 &467714563
@@ -3448,11 +3448,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
   HealthFill: {fileID: 531463330}
   smoothspeed: 5
   isdead: 0
   audiomanager: {fileID: 1499409571}
   uiManager: {fileID: 420451301}
+  TargetFillAmount: 0
+  healamount: 25
 --- !u!212 &467714568
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3796,6 +3799,7 @@ MonoBehaviour:
   Speed: 6
   audioSource: {fileID: 467714571}
   moveJoystick: {fileID: 1770486478}
+  smoothSpeed: 222222
 --- !u!222 &467714577
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4119,14 +4123,14 @@ RectTransform:
   m_GameObject: {fileID: 583602131}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.7353247, y: 1.3610389, z: 1.3610389}
+  m_LocalScale: {x: 1.1831445, y: 0.92795634, z: 0.92795634}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 467714561}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 4.51, y: -0.49}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &583602133
@@ -4170,7 +4174,7 @@ SpriteRenderer:
   m_SortingLayerID: 49395709
   m_SortingLayer: 7
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: a77859a3b8056ea45a5b410526c50bdf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4213,9 +4217,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.0000000044237822}
+  m_Offset: {x: -0.007671385, y: 0}
   serializedVersion: 2
-  m_Radius: 0.099999994
+  m_Radius: 0.23041824
 --- !u!114 &583602135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4229,10 +4233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 377315586}
-  objectsLayerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  yOffset: 0.2
+  aimDistance: 7
 --- !u!1 &602978509
 GameObject:
   m_ObjectHideFlags: 0
@@ -4571,7 +4572,7 @@ GameObject:
   - component: {fileID: 665486818}
   m_Layer: 3
   m_Name: GameObject (4)
-  m_TagString: Untagged
+  m_TagString: Objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5700,7 +5701,7 @@ GameObject:
   - component: {fileID: 959184111}
   m_Layer: 3
   m_Name: GameObject (17)
-  m_TagString: Untagged
+  m_TagString: Objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5777,7 +5778,7 @@ GameObject:
   - component: {fileID: 961390475}
   m_Layer: 3
   m_Name: GameObject (2)
-  m_TagString: Untagged
+  m_TagString: Objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6033,7 +6034,7 @@ GameObject:
   - component: {fileID: 1017631849}
   m_Layer: 3
   m_Name: GameObject (9)
-  m_TagString: Untagged
+  m_TagString: Objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6126,7 +6127,7 @@ GameObject:
   - component: {fileID: 1019132890}
   m_Layer: 3
   m_Name: GameObject (8)
-  m_TagString: Untagged
+  m_TagString: Objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6543,7 +6544,7 @@ GameObject:
   - component: {fileID: 1044180613}
   m_Layer: 3
   m_Name: GameObject (7)
-  m_TagString: Untagged
+  m_TagString: Objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7455,7 +7456,7 @@ GameObject:
   - component: {fileID: 1260430394}
   m_Layer: 3
   m_Name: GameObject (1)
-  m_TagString: Untagged
+  m_TagString: Objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7547,7 +7548,7 @@ GameObject:
   - component: {fileID: 1302799934}
   m_Layer: 3
   m_Name: GameObject (15)
-  m_TagString: Untagged
+  m_TagString: Objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8497,7 +8498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1499409570}
   BackGroundmusicSource: {fileID: 1934322248}
-  bulletSound: {fileID: 8300000, guid: 846e5854ac5b9e64fa21384c0598861d, type: 3}
+  bulletSound: {fileID: 8300000, guid: 06df20ed8732aab4bb5239a86098da6e, type: 3}
   hitSound: {fileID: 8300000, guid: 4b39b3c549839c04789a811f8d994281, type: 3}
   enemyAttackSound: {fileID: 8300000, guid: 6bac107808966d3449b1cd4f93294ab4, type: 3}
   DeathSound: {fileID: 8300000, guid: 7540fa87787601e4490db5330129f7eb, type: 3}
@@ -10133,7 +10134,7 @@ GameObject:
   - component: {fileID: 1812293274}
   m_Layer: 3
   m_Name: GameObject (6)
-  m_TagString: Untagged
+  m_TagString: Objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10539,7 +10540,7 @@ GameObject:
   - component: {fileID: 1854116757}
   m_Layer: 3
   m_Name: GameObject (5)
-  m_TagString: Untagged
+  m_TagString: Objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10609,7 +10610,10 @@ PolygonCollider2D:
       - {x: 1.0246091, y: 4.9854794}
       - {x: 0.7165982, y: 6.071807}
       - {x: 0.6195351, y: 5.0383415}
-      - {x: 0.64763093, y: 3.0082686}
+      - {x: 0.8790445, y: 3.475052}
+      - {x: 0.9051276, y: 3.0150454}
+      - {x: 0.9012465, y: 2.6608188}
+      - {x: 0.90708566, y: 2.233693}
       - {x: 0.7162736, y: 1.0982089}
       - {x: 0.5332698, y: 0.8459345}
       - {x: -0.053667545, y: 0.7869692}
@@ -11305,7 +11309,7 @@ GameObject:
   - component: {fileID: 1948459634}
   m_Layer: 3
   m_Name: GameObject (14)
-  m_TagString: Untagged
+  m_TagString: Objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12148,7 +12152,7 @@ GameObject:
   - component: {fileID: 2092463173}
   m_Layer: 3
   m_Name: GameObject (16)
-  m_TagString: Untagged
+  m_TagString: Objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12225,7 +12229,7 @@ GameObject:
   - component: {fileID: 2126200674}
   m_Layer: 3
   m_Name: GameObject (3)
-  m_TagString: Untagged
+  m_TagString: Objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

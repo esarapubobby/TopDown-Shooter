@@ -1,5 +1,6 @@
 using UnityEngine;
 using PinePie.SimpleJoystick;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public AudioSource audioSource;
 
     public JoystickController moveJoystick;
+    [SerializeField] float smoothSpeed =12f;
 
     void Awake()
     {
@@ -40,12 +42,8 @@ public class PlayerController : MonoBehaviour
                     movement.x
                 ) * Mathf.Rad2Deg;
 
-            transform.rotation =
-                Quaternion.Euler(
-                    0,
-                    0,
-                    angle
-                );
+            transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.Euler(0,0,angle),smoothSpeed*Time.deltaTime);
+
 
             if (!audioSource.isPlaying)
             {
