@@ -692,7 +692,8 @@ public class UiManager : MonoBehaviour
     }
     public void ShowHighestWavePanel()
     {
-    HighestwavePanel.SetActive(true);
+        HighestWaves[1].text = GameStats.GetHighestWave().ToString();
+        HighestwavePanel.SetActive(true);
     }
     public void closeHighestWaveapnel()
     {

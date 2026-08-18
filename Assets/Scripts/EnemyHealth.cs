@@ -97,7 +97,7 @@ public class EnemyHealth : MonoBehaviour
     {
         Isdead = true;
 
-        animator.SetBool("IsDead", true);
+        animator.SetTrigger("IsDead");
 
         enemyCollider.enabled = false;
 
@@ -116,7 +116,7 @@ public class EnemyHealth : MonoBehaviour
             uiManager.showBosswinPanel();
         }
 
-        Destroy(gameObject, 2f);
+        Destroy(gameObject, 0.5f);
     }
 
     IEnumerator hitflash()

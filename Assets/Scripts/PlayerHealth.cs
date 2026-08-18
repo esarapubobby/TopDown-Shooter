@@ -72,9 +72,8 @@ public class PlayerHealth : MonoBehaviour
 
         if((enemyRespawn.currentWave-1)> GameStats.GetHighestWave())
         {
-            uiManager.ShowHighestWavePanel();
-            uiManager.HighestWaves[1].text = GameStats.GetHighestWave().ToString();
             GameStats.SaveHighestWave(enemyRespawn.currentWave);
+            uiManager.ShowHighestWavePanel();
         }
 
         gameOverdetails();
