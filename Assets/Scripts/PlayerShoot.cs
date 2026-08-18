@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PinePie.SimpleJoystick;
 
 public class PlayerShoot : MonoBehaviour
 {
@@ -8,10 +9,11 @@ public class PlayerShoot : MonoBehaviour
 
     public Transform firePoint;
 
+    public JoystickController AimJoystick;
+
     Animator animator;
 
     public Audiomanager audiomanager;
-
     public UiManager uiManager;
 
     public float fireRate = 0.35f;
@@ -21,6 +23,14 @@ public class PlayerShoot : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        if (AimJoystick.InputDirection.magnitude > 0.1f)
+        {
+            Shoot();
+        }
     }
 
     public void Shoot()
@@ -41,7 +51,7 @@ public class PlayerShoot : MonoBehaviour
 
         Instantiate(
             bulletprefab,
-            firePoint.position-firePoint.right*1f,
+            firePoint.position - firePoint.right * 1f,
             firePoint.rotation
         );
     }

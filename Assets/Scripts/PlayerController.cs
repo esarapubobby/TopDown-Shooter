@@ -10,10 +10,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float Speed = 4f;
 
     Vector2 movement;
+    Vector2 aim;
+
 
     public AudioSource audioSource;
 
     public JoystickController moveJoystick;
+    public JoystickController AimJoystick;
+
+    
     [SerializeField] float smoothSpeed =12f;
 
     void Awake()
@@ -29,12 +34,17 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         movement = moveJoystick.InputDirection;
+        aim =  AimJoystick.InputDirection;
 
         bool isMoving = movement.magnitude > 0.1f;
 
+
+
+        bool isAiming = aim.magnitude>0.01f;
+
         animator.SetBool("IsMove", isMoving);
 
-        if (isMoving)
+        if (!isAiming && isMoving)
         {
             float angle =
                 Mathf.Atan2(
@@ -54,6 +64,18 @@ public class PlayerController : MonoBehaviour
         else
         {
             audioSource.Stop();
+        }
+
+        if ( aim.magnitude>0.01f)
+        {
+            float angle =
+                Mathf.Atan2(
+                    aim.y,
+                    aim.x
+                ) * Mathf.Rad2Deg;
+
+            transform.rotation = Quaternion.Slerp(transform.rotation,Quaternion.Euler(0,0,angle),smoothSpeed*Time.deltaTime);
+
         }
     }
 
