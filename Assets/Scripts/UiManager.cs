@@ -245,11 +245,12 @@ public class UiManager : MonoBehaviour
 
 
 
-        challengeKillTxt.text =
-        "Kills : "
-        + enemiesKilled.ToString()
-        + " / "
-        + challengeTargetKills.ToString();
+        if(!(GamemodeManager.currentMode == "CHALLENGE") )
+        {
+            challengeKillTxt.text =
+            "Kills : "
+            + enemiesKilled.ToString();
+        }
         
         
         if (GamemodeManager.currentMode == "CHALLENGE"
@@ -276,7 +277,11 @@ public class UiManager : MonoBehaviour
             + seconds.ToString("00");
 
 
-
+            challengeKillTxt.text =
+            "Kills : "
+            + enemiesKilled.ToString()
+            + " / "
+            + challengeTargetKills.ToString();
 
 
 
@@ -345,7 +350,7 @@ public class UiManager : MonoBehaviour
 
         Time.timeScale = 0f;
 
-        yield return new WaitForSecondsRealtime(3f);
+        yield return new WaitForSecondsRealtime(1.5f);
 
         ChallengeAlertPanel.SetActive(false);
         
@@ -465,7 +470,7 @@ public class UiManager : MonoBehaviour
 
         Time.timeScale = 0f;
 
-        yield return new WaitForSecondsRealtime(5f);
+        yield return new WaitForSecondsRealtime(1.5f);
 
         bossAlertPanel.SetActive(false);
 
@@ -484,7 +489,7 @@ public class UiManager : MonoBehaviour
 
         Time.timeScale = 0f;
 
-        yield return new WaitForSecondsRealtime(6f);
+        yield return new WaitForSecondsRealtime(1.5f);
 
         BossComingAlert.SetActive(false);
 
@@ -668,6 +673,8 @@ public class UiManager : MonoBehaviour
     public void StartBossRush()
     {
         GamemodeManager.currentMode = "BOSSRUSH";
+
+        
 
         StartCoroutine(StartBossMission());
     }
