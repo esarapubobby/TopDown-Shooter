@@ -27,7 +27,12 @@ public class PlayerShoot : MonoBehaviour
 
     void Update()
     {
-        if (AimJoystick.InputDirection.magnitude > 0.1f)
+        if (AimJoystick.InputDirection.magnitude > 0.5f)
+        {
+            Shoot();
+        }
+
+        if(uiManager.aimJoystick.InputDirection.magnitude > 0.5f)
         {
             Shoot();
         }

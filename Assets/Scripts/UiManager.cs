@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using PinePie.SimpleJoystick;
 
 public class UiManager : MonoBehaviour
 {
@@ -113,6 +114,16 @@ public class UiManager : MonoBehaviour
 
     public TextMeshProUGUI[] HighestWaves;
 
+    [Header("Tuturial ")]
+    public GameObject moveTutorial;
+    public GameObject aimTutorial;
+    public GameObject[] tutorials;
+    public GameObject ControlTutorialPanel ;
+    public JoystickController moveJoystick;
+    public JoystickController aimJoystick;
+
+    public PlayerController playerController;
+
 
 
 
@@ -177,6 +188,9 @@ public class UiManager : MonoBehaviour
 
 
 
+        ControlTutorialPanel.SetActive(false);
+        moveTutorial.SetActive(false);
+        aimTutorial.SetActive(false);
 
         
         if (isRetry)
@@ -218,7 +232,6 @@ public class UiManager : MonoBehaviour
         }
         else
         {
-            HomelPannel.SetActive(true);
 
             AdManager.Instance.HideBanner();
 
@@ -226,8 +239,9 @@ public class UiManager : MonoBehaviour
 
             ControlPanel.SetActive(false);
 
-
             Time.timeScale = 0f;
+            
+            StartControlsTutorial();
         }
     }
 
@@ -333,6 +347,81 @@ public class UiManager : MonoBehaviour
 
 
         Time.timeScale = 1f;
+
+        
+    }
+    void StartControlsTutorial()
+    {
+        if (PlayerPrefs.GetInt("ControlsTutorialCompleted", 0) == 0)
+           StartCoroutine(ControlTutorialRoutine());
+        else
+            HomelPannel.SetActive(true);
+
+        ;
+    }
+
+    IEnumerator ControlTutorialRoutine()
+    {
+        Time.timeScale = 1f;
+        playerController.tutorialMode = true;
+        ControlTutorialPanel.SetActive(true);
+        playerController.enabled = true;
+        FindAnyObjectByType<PlayerShoot>().enabled = true;
+
+        moveTutorial.SetActive(true);
+        aimTutorial.SetActive(false);
+
+        while (moveJoystick.InputDirection.magnitude < 1f)
+        {
+            yield return null;
+        }
+
+        tutorials[0].SetActive(false);
+
+        while (moveJoystick.InputDirection.magnitude > 0.1f)
+        {
+            yield return null;
+        }
+
+        moveTutorial.SetActive(false);
+        playerController.StopMovement();
+
+        
+        yield return new WaitForSeconds(0.5f);
+
+
+        aimTutorial.SetActive(true);
+
+        while (aimJoystick.InputDirection.magnitude <1f)
+        {
+            yield return null;
+        }
+
+        tutorials[1].SetActive(false);
+
+        
+        while (aimJoystick.InputDirection.magnitude >0.1f)
+        {
+            yield return null;
+        }
+        
+        aimTutorial.SetActive(false);
+
+        yield return new WaitForSeconds(0.5f);
+
+
+
+        playerController.tutorialMode = false;
+
+        PlayerPrefs.SetInt("ControlsTutorialCompleted", 1);
+        PlayerPrefs.Save();
+
+        FindAnyObjectByType<PlayerController>().enabled = false;
+        FindAnyObjectByType<PlayerShoot>().enabled = false;
+        Time.timeScale = 0f;
+        ControlTutorialPanel.SetActive(false);
+
+        newgame();
     }
 
 

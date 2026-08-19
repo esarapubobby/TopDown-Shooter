@@ -14,11 +14,14 @@ public class PlayerController : MonoBehaviour
 
 
     public AudioSource audioSource;
+    public bool tutorialMode = false;
 
     public JoystickController moveJoystick;
     public JoystickController AimJoystick;
 
-    
+    public JoystickController TutorialmoveJoystick;
+    public JoystickController TutorialAimJoystick;
+   
     [SerializeField] float smoothSpeed =12f;
 
     void Awake()
@@ -33,13 +36,20 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        movement = moveJoystick.InputDirection;
-        aim =  AimJoystick.InputDirection;
+
+        if (tutorialMode)
+        {
+            movement = TutorialmoveJoystick.InputDirection;
+            aim =  TutorialAimJoystick.InputDirection;
+
+        }
+        else
+        {           
+            movement = moveJoystick.InputDirection;
+            aim =  AimJoystick.InputDirection;
+        }
 
         bool isMoving = movement.magnitude > 0.1f;
-
-
-
         bool isAiming = aim.magnitude>0.01f;
 
         animator.SetBool("IsMove", isMoving);
@@ -82,5 +92,11 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         playerRb.velocity = movement * Speed;
+    }
+    public void StopMovement()
+    {
+        movement = Vector2.zero;
+        playerRb.velocity = Vector2.zero;
+        audioSource.Stop();
     }
 }

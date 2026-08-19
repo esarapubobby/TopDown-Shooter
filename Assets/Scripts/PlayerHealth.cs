@@ -22,6 +22,7 @@ public class PlayerHealth : MonoBehaviour
     public float TargetFillAmount;
     public int healamount = 25;
     EnemyRespawn enemyRespawn;
+    PlayerController playerController;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -29,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
         TargetFillAmount = 1f;
         HealthFill.fillAmount = 1f;
         enemyRespawn = FindAnyObjectByType<EnemyRespawn>();
+        playerController = GetComponent<PlayerController>();
 
     }
     void Update()
@@ -62,7 +64,7 @@ public class PlayerHealth : MonoBehaviour
        
         StopAllCoroutines();
         FindAnyObjectByType<EnemyRespawn>().waveText.gameObject.SetActive(false);
-        FindAnyObjectByType<PlayerController>().audioSource.Stop();
+        playerController.audioSource.Stop();
     
 
         audiomanager.audioSource.PlayOneShot(audiomanager.DeathSound);
@@ -80,6 +82,8 @@ public class PlayerHealth : MonoBehaviour
 
 
         animator.SetBool("IsDead",isdead);
+        Time.timeScale = 0f;
+
 
 
 
