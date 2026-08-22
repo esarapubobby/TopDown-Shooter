@@ -91,6 +91,11 @@ public class UiManager : MonoBehaviour
 
     public float survivalTime = 0f;
 
+    [Header("HighestKills")]
+    int highestEnemiesKilled;
+    public TextMeshProUGUI HighestKillTxt;
+    public GameObject HighestKillsFrame;
+
 
 
     [Header("Challenge Settings")]
@@ -129,7 +134,6 @@ public class UiManager : MonoBehaviour
 
     void Start()
     {
-
         
         PlayBtn.onClick.AddListener(playBtn);
 
@@ -185,6 +189,8 @@ public class UiManager : MonoBehaviour
 
         HighestWaveFrames.SetActive(false);
 
+        HighestKillsFrame.SetActive(false);
+
 
 
 
@@ -203,6 +209,8 @@ public class UiManager : MonoBehaviour
             {
                 HighestWaves[0].text = GameStats.GetHighestWave().ToString();
                 HighestWaveFrames.SetActive(true);
+                HighestKillTxt.text = getHighestKills().ToString();
+                HighestKillsFrame.SetActive(true);
             }
 
             if(GamemodeManager.currentMode == "CHALLENGE")
@@ -245,6 +253,20 @@ public class UiManager : MonoBehaviour
         }
     }
 
+    public  void  HighestKills()
+    {
+        if (enemiesKilled > getHighestKills())
+        {
+            PlayerPrefs.SetInt("HighestKilles",enemiesKilled);
+            PlayerPrefs.Save();
+        }
+    }
+    public int getHighestKills()
+    {
+        return PlayerPrefs.GetInt("HighestKilles",0);
+        
+    }
+
 
 
     void Update()
@@ -256,6 +278,8 @@ public class UiManager : MonoBehaviour
 
         
         survivalTime += Time.deltaTime;
+
+
 
 
 
@@ -732,6 +756,9 @@ public class UiManager : MonoBehaviour
 
         HighestWaves[0].text = GameStats.GetHighestWave().ToString();
         HighestWaveFrames.SetActive(true);
+        HighestKillTxt.text = getHighestKills().ToString();
+        HighestKillsFrame.SetActive(true);
+
 
         Playgame();
     }
@@ -762,9 +789,6 @@ public class UiManager : MonoBehaviour
     public void StartBossRush()
     {
         GamemodeManager.currentMode = "BOSSRUSH";
-
-        
-
         StartCoroutine(StartBossMission());
     }
 

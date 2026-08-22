@@ -78,6 +78,7 @@ public class PlayerHealth : MonoBehaviour
             uiManager.ShowHighestWavePanel();
         }
 
+        uiManager.HighestKills();
         gameOverdetails();
 
 

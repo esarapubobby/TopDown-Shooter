@@ -35,8 +35,7 @@ public class EnemyHealth : MonoBehaviour
 
 
         
-        if (gameObject.CompareTag("Boss") &&
-            HealthFill != null)
+        if (HealthFill != null)
         {
             TargetFillAmount = 1f;
             HealthFill.fillAmount = 1f;
@@ -46,8 +45,7 @@ public class EnemyHealth : MonoBehaviour
     void Update()
     {
         
-        if (gameObject.CompareTag("Boss") &&
-            HealthFill != null)
+        if (HealthFill != null)
         {
             HealthFill.fillAmount =
                 Mathf.Lerp(
@@ -69,8 +67,7 @@ public class EnemyHealth : MonoBehaviour
             Mathf.Clamp(currentHealth, 0, maxHealth);
 
         
-        if (gameObject.CompareTag("Boss") &&
-            HealthFill != null)
+        if (HealthFill != null)
         {
             UpdateHealthBar();
         }
