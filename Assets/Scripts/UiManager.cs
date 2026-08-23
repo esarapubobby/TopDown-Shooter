@@ -818,5 +818,6 @@ public class UiManager : MonoBehaviour
     public void closeHighestWaveapnel()
     {
         HighestwavePanel.SetActive(false);
+        playerHealth.ShowGameOver();
     }
 }

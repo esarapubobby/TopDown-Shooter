@@ -56,7 +56,6 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         isdead = true;
-        uiManager.gameoverPanel.SetActive(true);
         uiManager.hudPanel.SetActive(false);
         uiManager.challengeHUD.SetActive(false);
         uiManager.ControlPanel.SetActive(false);
@@ -67,7 +66,6 @@ public class PlayerHealth : MonoBehaviour
         playerController.audioSource.Stop();
     
 
-        audiomanager.audioSource.PlayOneShot(audiomanager.DeathSound);
         audiomanager.BackGroundmusicSource.Stop();
         
         AdManager.Instance.ShowBanner();
@@ -76,6 +74,11 @@ public class PlayerHealth : MonoBehaviour
         {
             GameStats.SaveHighestWave(enemyRespawn.currentWave);
             uiManager.ShowHighestWavePanel();
+            audiomanager.playHigscoreSound();
+        }
+        else
+        {
+            ShowGameOver();
         }
 
         uiManager.HighestKills();
@@ -88,6 +91,16 @@ public class PlayerHealth : MonoBehaviour
 
 
 
+    }
+    public void ShowGameOver()
+    {
+        uiManager.HighestKills();
+
+        gameOverdetails();
+
+        audiomanager.audioSource.PlayOneShot(audiomanager.DeathSound);
+
+        uiManager.gameoverPanel.SetActive(true);
     }
 
 
@@ -130,6 +143,8 @@ public class PlayerHealth : MonoBehaviour
     }
     public void RevivePlayer()
     {
+        AdManager.Instance.HideBanner();
+        
         currentHealth = maxHealth / 2;
 
         TargetFillAmount = (float)currentHealth / maxHealth;
