@@ -9,6 +9,7 @@ TagManager:
   - HealthPack
   - Boss
   - Objects
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - HealthPack
   - Background
   - Enemy
-  - 
+  - Fire
   - 
   - 
   - 
@@ -48,6 +49,9 @@ TagManager:
     locked: 0
   - name: BackRound
     uniqueID: 293249113
+    locked: 0
+  - name: Fire
+    uniqueID: 3121259669
     locked: 0
   - name: Player
     uniqueID: 2703366811

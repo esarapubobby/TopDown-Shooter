@@ -19,6 +19,7 @@ public class PlayerShoot : MonoBehaviour
     public float fireRate = 0.35f;
 
     float nextFireTime;
+    bool ignoreJoystickInput = false;
 
     void Start()
     {
@@ -27,6 +28,15 @@ public class PlayerShoot : MonoBehaviour
 
     void Update()
     {
+        if (ignoreJoystickInput)
+        {
+            if (AimJoystick.InputDirection.magnitude < 0.01f)
+            {
+                ignoreJoystickInput = false;
+            }
+
+            return;
+        }
         if (AimJoystick.InputDirection.magnitude > 0.5f)
         {
             Shoot();
@@ -59,5 +69,10 @@ public class PlayerShoot : MonoBehaviour
             firePoint.position - firePoint.right * 1f,
             firePoint.rotation
         );
+    }
+
+    public void ResetJoystickInput()
+    {
+        ignoreJoystickInput = true;
     }
 }

@@ -115,12 +115,17 @@ public class AdManager : MonoBehaviour
             {
                 if (error != null || ad == null)
                 {
-                    Debug.Log("Rewarded Ad failed to load.");
+                
                     return;
                 }
                 rewardedAd = ad;
                 rewardedAd.OnAdFullScreenContentClosed += () =>
                 {
+
+                    rewardAction?.Invoke();
+
+                    rewardAction = null;
+
                     LoadRewardedAd();
                 };
             });
@@ -128,17 +133,14 @@ public class AdManager : MonoBehaviour
     public void ShowRewardedAd(Action onReward)
     {
         rewardAction = onReward;
+
         if (rewardedAd != null &&
             rewardedAd.CanShowAd())
         {
-            rewardedAd.Show((Reward reward) =>
-            {
-                rewardAction?.Invoke();
-            });
+            rewardedAd.Show((Reward reward) =>{});
         }
         else
         {
-            Debug.Log("Rewarded Ad not ready.");
             UiManager ui = FindObjectOfType<UiManager>();
 
             if (ui != null)

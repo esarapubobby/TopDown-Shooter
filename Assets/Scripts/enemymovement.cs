@@ -65,16 +65,16 @@ public class enemymovement : MonoBehaviour
         
         if (playerHealth != null)
         {
-            if (playerHealth.isdead)
-            {
-                currentDirection = Vector2.zero;
+            // if (playerHealth.isdead)
+            // {
+            //     currentDirection = Vector2.zero;
 
-                animator.SetBool("IsMove", false);
+            //     animator.SetBool("IsMove", false);
 
-                animator.SetBool("IsAttack", false);
+            //     animator.SetBool("IsAttack", false);
 
-                return;
-            }
+            //     return;
+            // }
         }
 
         

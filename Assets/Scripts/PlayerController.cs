@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public JoystickController TutorialAimJoystick;
    
     [SerializeField] float smoothSpeed =12f;
+    bool ignoreJoystickInput = false;
 
     void Awake()
     {
@@ -36,7 +37,23 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (ignoreJoystickInput)
+        {
+            movement = Vector2.zero;
+            aim = Vector2.zero;
+            playerRb.velocity = Vector2.zero;
 
+        
+            if (moveJoystick.InputDirection.magnitude < 0.01f &&
+                AimJoystick.InputDirection.magnitude < 0.01f)
+            {
+                ignoreJoystickInput = false;
+            }
+
+            animator.SetBool("IsMove", false);
+            return;
+        }
+        
         if (tutorialMode)
         {
             movement = TutorialmoveJoystick.InputDirection;
@@ -98,5 +115,6 @@ public class PlayerController : MonoBehaviour
         movement = Vector2.zero;
         playerRb.velocity = Vector2.zero;
         audioSource.Stop();
+        ignoreJoystickInput = true;
     }
 }

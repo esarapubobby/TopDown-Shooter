@@ -103,7 +103,7 @@ public class UiManager : MonoBehaviour
 
     public int challengeTargetKills = 10;
 
-    bool challengeCompleted = false;
+    public bool challengeCompleted = false;
 
 
 
@@ -124,6 +124,12 @@ public class UiManager : MonoBehaviour
     public GameObject aimTutorial;
     public GameObject[] tutorials;
     public GameObject ControlTutorialPanel ;
+
+    public GameObject tutorialWelcomePanel;
+    public GameObject tutorialEndPanel;
+    public Button tutorialStartBtn;
+    public Button tutorialEndBtn;
+
     public JoystickController moveJoystick;
     public JoystickController aimJoystick;
 
@@ -169,6 +175,10 @@ public class UiManager : MonoBehaviour
 
         ContinueBtn.onClick.AddListener(closeHighestWaveapnel);
 
+        tutorialStartBtn.onClick.AddListener(startTutorialBtn);
+
+        tutorialEndBtn.onClick.AddListener(CloseTutorialEndPanel);
+
 
         
         settingsPanel.SetActive(false);
@@ -197,10 +207,13 @@ public class UiManager : MonoBehaviour
         ControlTutorialPanel.SetActive(false);
         moveTutorial.SetActive(false);
         aimTutorial.SetActive(false);
+        tutorialEndPanel.SetActive(false);
+        tutorialWelcomePanel.SetActive(false);
 
         
         if (isRetry)
         {
+            AdManager.Instance.HideBanner();
             HomelPannel.SetActive(false);
 
 
@@ -266,6 +279,23 @@ public class UiManager : MonoBehaviour
         return PlayerPrefs.GetInt("HighestKilles",0);
         
     }
+    public void ShowTutorialWelcomePanel()
+    {
+        tutorialWelcomePanel.SetActive(true);
+    }
+    public void CloseTutorialWelcomePanel()
+    {
+        tutorialWelcomePanel.SetActive(false);
+    }
+        public void ShowTutorialEndPanel()
+    {
+        tutorialEndPanel.SetActive(true);
+    }
+    public void CloseTutorialEndPanel()
+    {
+        tutorialEndPanel.SetActive(false);
+        newgame();
+    }
 
 
 
@@ -274,14 +304,7 @@ public class UiManager : MonoBehaviour
         if (Time.timeScale == 0f)
             return;
 
-
-
-        
         survivalTime += Time.deltaTime;
-
-
-
-
 
         if(!(GamemodeManager.currentMode == "CHALLENGE") )
         {
@@ -377,20 +400,27 @@ public class UiManager : MonoBehaviour
     void StartControlsTutorial()
     {
         if (PlayerPrefs.GetInt("ControlsTutorialCompleted", 0) == 0)
-           StartCoroutine(ControlTutorialRoutine());
+            ShowTutorialWelcomePanel();
         else
             HomelPannel.SetActive(true);
 
-        ;
+    }
+    void startTutorialBtn()
+    {
+        CloseTutorialWelcomePanel();
+        StartCoroutine(ControlTutorialRoutine());
     }
 
     IEnumerator ControlTutorialRoutine()
     {
+        
         Time.timeScale = 1f;
         playerController.tutorialMode = true;
         ControlTutorialPanel.SetActive(true);
         playerController.enabled = true;
         FindAnyObjectByType<PlayerShoot>().enabled = true;
+
+    
 
         moveTutorial.SetActive(true);
         aimTutorial.SetActive(false);
@@ -445,7 +475,7 @@ public class UiManager : MonoBehaviour
         Time.timeScale = 0f;
         ControlTutorialPanel.SetActive(false);
 
-        newgame();
+        ShowTutorialEndPanel();
     }
 
 
@@ -543,6 +573,7 @@ public class UiManager : MonoBehaviour
     public void closeSettingsPanel()
     {
         settingsPanel.SetActive(false);
+        AdManager.Instance.HideBanner();
 
         if (openedFromGame)
         {
@@ -600,7 +631,6 @@ public class UiManager : MonoBehaviour
 
         ControlPanel.SetActive(false);
 
-        Time.timeScale = 0f;
 
         yield return new WaitForSecondsRealtime(1.5f);
 
@@ -608,7 +638,7 @@ public class UiManager : MonoBehaviour
 
         ControlPanel.SetActive(true);
 
-        Time.timeScale = 1f;
+
     }
 
 

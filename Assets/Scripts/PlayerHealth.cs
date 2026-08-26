@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -143,13 +144,14 @@ public class PlayerHealth : MonoBehaviour
     }
     public void RevivePlayer()
     {
+        isdead = false;
+
         AdManager.Instance.HideBanner();
         
         currentHealth = maxHealth / 2;
 
         TargetFillAmount = (float)currentHealth / maxHealth;
 
-        isdead = false;
 
         animator.SetBool("IsDead", false);
 
@@ -162,9 +164,14 @@ public class PlayerHealth : MonoBehaviour
 
         if (GamemodeManager.currentMode == "CHALLENGE")
             uiManager.challengeHUD.SetActive(true);
+            uiManager.challengeCompleted = false;
+            uiManager.challengeTime = 30f;
 
         audiomanager.BackGroundmusicSource.Play();
 
+        playerController.StopMovement();
+        GetComponent<PlayerShoot>().ResetJoystickInput();
+        
         Time.timeScale = 1f;
     }
 }
