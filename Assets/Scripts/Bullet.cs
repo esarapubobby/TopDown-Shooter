@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private GameObject[] ImpactPrefab;
+    [SerializeField] private GameObject ObjectsImpactPrefab;
+
     public float speed = 10f;
     public int damage = 50;
-    GameObject impact;
+    GameObject impactPrefab;
+    GameObject objectsImpactPrefab;
 
     Audiomanager audiomanager;
     void Start()
@@ -30,19 +31,39 @@ public class Bullet : MonoBehaviour
             EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {
-                int randomNumber = Random.Range(0,2);
-                impact =Instantiate(ImpactPrefab[randomNumber],collision.gameObject.transform.position,Quaternion.identity);
+                int randomNumber = Random.Range(0,ImpactPrefab.Length);
+                impactPrefab =Instantiate(ImpactPrefab[randomNumber],collision.gameObject.transform.position - collision.gameObject.transform.right*-0.5f,Quaternion.identity);
+                Invoke("HideimpactPrefab",1.5f);
+
                 enemyHealth.TakeDamage(damage);
             }
             audiomanager.playHitObjectSound();
             Destroy(gameObject);
         }
-        else if(collision.gameObject.tag == "Objects" )
+        else if (collision.CompareTag("Objects"))
         {
             audiomanager.playHitObjectSound();
+
+            Vector2 hitPoint = collision.ClosestPoint(transform.position);
+
+            objectsImpactPrefab = Instantiate(
+                ObjectsImpactPrefab,
+                hitPoint,
+                Quaternion.identity
+            );
+
+            Invoke("HideobjectsImpactPrefabPrefab", 1.5f);
+
             Destroy(gameObject);
         }
     }
-
+    void HideimpactPrefab()
+    {
+        impactPrefab.SetActive(false);
+    }
+        void HideobjectsImpactPrefabPrefab()
+    {
+        objectsImpactPrefab.SetActive(false);
+    }
 
 }

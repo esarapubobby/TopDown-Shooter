@@ -106,7 +106,6 @@ public class EnemyHealth : MonoBehaviour
         {
             spawner.killedEnemies();
         }
-
         
         if (gameObject.CompareTag("Boss"))
         {
