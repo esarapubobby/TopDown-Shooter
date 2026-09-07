@@ -9,7 +9,7 @@ public class Audiomanager : MonoBehaviour
     public AudioSource audioSource;
     public AudioSource BackGroundmusicSource;
 
-    public AudioClip 
+    public AudioClip
     bulletSound,
     hitSound,
     enemyAttackSound,
@@ -23,18 +23,19 @@ public class Audiomanager : MonoBehaviour
     highScoreSound;
 
     public Slider musicSlider;
-
     public Slider sfxSlider;
 
     void Start()
     {
-        
+
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1f);
+
+        BackGroundmusicSource.volume = musicSlider.value;
+        audioSource.volume = sfxSlider.value;
+
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
-
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
-
-
-
     }
 
     public void playBulletSound()
@@ -71,6 +72,7 @@ public class Audiomanager : MonoBehaviour
     {
         audioSource.PlayOneShot(clickSound);
     }
+
     public void playWaveSound()
     {
         audioSource.PlayOneShot(wavesound);
@@ -80,22 +82,25 @@ public class Audiomanager : MonoBehaviour
     {
         audioSource.PlayOneShot(bosswarningSound);
     }
+
     public void playHigscoreSound()
     {
         audioSource.PlayOneShot(highScoreSound);
     }
 
-    
-
     void SetMusicVolume(float value)
     {
         BackGroundmusicSource.volume = value;
+
+        PlayerPrefs.SetFloat("MusicVolume", value);
+        PlayerPrefs.Save();
     }
 
     void SetSFXVolume(float value)
     {
         audioSource.volume = value;
-    }
 
-        
+        PlayerPrefs.SetFloat("SFXVolume", value);
+        PlayerPrefs.Save();
+    }
 }

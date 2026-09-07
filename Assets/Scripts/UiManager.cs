@@ -228,7 +228,7 @@ public class UiManager : MonoBehaviour
 
             if(GamemodeManager.currentMode == "CHALLENGE")
             {
-                StartCoroutine(StartChallengeMission());
+                StartChallenge();
             }
 
             else if(GamemodeManager.currentMode == "BOSSRUSH")
