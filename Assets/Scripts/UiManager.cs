@@ -195,7 +195,7 @@ public class UiManager : MonoBehaviour
 
         bossAlertPanel.SetActive(false);
 
-        ControlPanel.SetActive(false);
+        PlatformInputManager.Instance.SetMobileControls(false);
 
         HighestWaveFrames.SetActive(false);
 
@@ -239,7 +239,7 @@ public class UiManager : MonoBehaviour
             {
                 hudPanel.SetActive(true);
 
-                ControlPanel.SetActive(true);
+                PlatformInputManager.Instance.SetMobileControls(true);
 
 
                 Time.timeScale = 1f;
@@ -258,7 +258,7 @@ public class UiManager : MonoBehaviour
 
             hudPanel.SetActive(false);
 
-            ControlPanel.SetActive(false);
+            PlatformInputManager.Instance.SetMobileControls(false);
 
             Time.timeScale = 0f;
             
@@ -389,7 +389,7 @@ public class UiManager : MonoBehaviour
 
         hudPanel.SetActive(true);
 
-        ControlPanel.SetActive(true);
+        PlatformInputManager.Instance.SetMobileControls(true);
 
 
 
@@ -399,11 +399,18 @@ public class UiManager : MonoBehaviour
     }
     void StartControlsTutorial()
     {
+        // Tutorial is only for mobile
+        if (!PlatformInputManager.Instance.IsMobile)
+        {
+            HomelPannel.SetActive(true);
+            return;
+        }
+
+        // Mobile tutorial
         if (PlayerPrefs.GetInt("ControlsTutorialCompleted", 0) == 0)
             ShowTutorialWelcomePanel();
         else
             HomelPannel.SetActive(true);
-
     }
     void startTutorialBtn()
     {
@@ -499,7 +506,7 @@ public class UiManager : MonoBehaviour
         
         challengeHUD.SetActive(true);
 
-        ControlPanel.SetActive(true);
+        PlatformInputManager.Instance.SetMobileControls(true);
 
 
 
@@ -536,7 +543,7 @@ public class UiManager : MonoBehaviour
 
         hudPanel.SetActive(false);
 
-        ControlPanel.SetActive(false);
+        PlatformInputManager.Instance.SetMobileControls(false);
 
 
     }
@@ -558,7 +565,7 @@ public class UiManager : MonoBehaviour
 
         hudPanel.SetActive(false);
 
-        ControlPanel.SetActive(false);
+        PlatformInputManager.Instance.SetMobileControls(false);
 
         AdManager.Instance.ShowBanner();
 
@@ -583,7 +590,7 @@ public class UiManager : MonoBehaviour
 
             hudPanel.SetActive(true);
 
-            ControlPanel.SetActive(true);
+            PlatformInputManager.Instance.SetMobileControls(true);
 
 
             AdManager.Instance.HideBanner();
@@ -618,7 +625,7 @@ public class UiManager : MonoBehaviour
 
         bossAlertPanel.SetActive(false);
 
-        ControlPanel.SetActive(true);
+        PlatformInputManager.Instance.SetMobileControls(true);
 
         Playgame();
     }
@@ -629,14 +636,14 @@ public class UiManager : MonoBehaviour
 
         audiomanager.playBosswarnSound();
 
-        ControlPanel.SetActive(false);
+        PlatformInputManager.Instance.SetMobileControls(true);
 
 
         yield return new WaitForSecondsRealtime(1.5f);
 
         BossComingAlert.SetActive(false);
 
-        ControlPanel.SetActive(true);
+        PlatformInputManager.Instance.SetMobileControls(true);
 
 
     }
@@ -656,7 +663,7 @@ public class UiManager : MonoBehaviour
 
         challengeHUD.SetActive(false);
 
-        ControlPanel.SetActive(false);
+        PlatformInputManager.Instance.SetMobileControls(false);
 
 
         AdManager.Instance.ShowBanner();
@@ -682,7 +689,7 @@ public class UiManager : MonoBehaviour
 
         hudPanel.SetActive(false);
 
-        ControlPanel.SetActive(false);
+        PlatformInputManager.Instance.SetMobileControls(false);
 
         AdManager.Instance.ShowBanner();
         
@@ -709,7 +716,7 @@ public class UiManager : MonoBehaviour
 
         audiomanager.BackGroundmusicSource.Stop();
 
-        ControlPanel.SetActive(false);
+        PlatformInputManager.Instance.SetMobileControls(false);
 
         AdManager.Instance.ShowBanner();
 
